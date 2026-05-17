@@ -18,7 +18,18 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="preload" as="image" href="assets/hero-ocean-night.webp" fetchpriority="high" />
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+
+  <!-- Critical inline styles: prevent FOUC while fonts/stylesheet load async -->
+  <style>
+    html,body{margin:0;background:#050505;color:#F2EFE8;min-height:100vh;font-family:'EB Garamond',Garamond,Georgia,'Times New Roman',serif;font-size:16px;line-height:1.5;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
+    *,*::before,*::after{box-sizing:border-box}
+    img,video{display:block;max-width:100%;height:auto}
+    a{color:inherit;text-decoration:none}
+  </style>
+
+  <!-- Async Google Fonts (display=swap prevents FOIT) -->
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Inter:wght@400;500;600&display=swap" onload="this.onload=null;this.rel='stylesheet'" />
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Inter:wght@400;500;600&display=swap" /></noscript>
 
   <link rel="stylesheet" href="styles.css" />
 
@@ -43,14 +54,6 @@
   <meta name="twitter:description" content="Authority doesn't come from performance. It comes from alignment. A book by Michael N. Fineman." />
   <meta name="twitter:image" content="https://michaelnfineman.com/assets/book-3d-mockup.png" />
   <meta name="twitter:image:alt" content="The Authority Drift book cover" />
-
-  <!-- Meta Pixel -->
-  <script>
-    !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
-    fbq('init','3864806837147722');
-    fbq('track','PageView');
-  </script>
-  <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=3864806837147722&ev=PageView&noscript=1" alt="" /></noscript>
 
   <!-- Structured Data: Book + Person + Organization + WebSite + FAQPage -->
   <script type="application/ld+json">
@@ -282,7 +285,7 @@
 
   <!-- ============ DIVIDER ORNAMENT ============ -->
   <div class="section-ornament-strip reveal" aria-hidden="true">
-    <img src="assets/gold-dot-v-pattern.png" alt="" width="640" height="320" decoding="async" loading="lazy" />
+    <img src="assets/gold-dot-v-pattern.webp" alt="" width="640" height="320" decoding="async" loading="lazy" />
   </div>
 
   <!-- ============ THE BOOK ============ -->
@@ -744,28 +747,28 @@
 
       <div class="speaker-gallery reveal">
         <figure class="speaker-tile speaker-tile-hero">
-          <img src="assets/mike-speaker-stage-mic.jpg" alt="Michael speaking at The Build" width="1200" height="800" decoding="async" loading="lazy" />
+          <img src="assets/mike-speaker-stage-mic.webp" alt="Michael speaking at The Build" width="1200" height="800" decoding="async" loading="lazy" />
           <figcaption>
             <span>Keynote</span>
             <strong>The Build</strong>
           </figcaption>
         </figure>
         <figure class="speaker-tile speaker-tile-portrait">
-          <img src="assets/mike-speaker-wife.jpg" alt="Michael and his wife on stage" width="800" height="1000" decoding="async" loading="lazy" />
+          <img src="assets/mike-speaker-wife.webp" alt="Michael and his wife on stage" width="800" height="1000" decoding="async" loading="lazy" />
           <figcaption>
             <span>Together on stage</span>
             <strong>Faith &amp; Family</strong>
           </figcaption>
         </figure>
         <figure class="speaker-tile speaker-tile-wide">
-          <img src="assets/mike-speaker-audience.jpg" alt="Michael speaking to a large audience" width="1600" height="800" decoding="async" loading="lazy" />
+          <img src="assets/mike-speaker-audience.webp" alt="Michael speaking to a large audience" width="1600" height="800" decoding="async" loading="lazy" />
           <figcaption>
             <span>The Room</span>
             <strong>Wrapped In</strong>
           </figcaption>
         </figure>
         <figure class="speaker-tile speaker-tile-small">
-          <img src="assets/mike-speaker-stage.jpg" alt="Michael at The Build event stage" width="800" height="1000" decoding="async" loading="lazy" />
+          <img src="assets/mike-speaker-stage.webp" alt="Michael at The Build event stage" width="800" height="1000" decoding="async" loading="lazy" />
           <figcaption>
             <span>Behind the Mic</span>
             <strong>The Build</strong>
@@ -805,7 +808,7 @@
 
   <!-- ============ INVITATION FROM MICHAEL ============ -->
   <section class="section-invitation" id="invitation">
-    <img src="assets/mike-speaker-stage.jpg" alt="Michael N. Fineman on stage" class="invitation-bg" width="1920" height="1080" decoding="async" loading="lazy" />
+    <img src="assets/mike-speaker-stage.webp" alt="Michael N. Fineman on stage" class="invitation-bg" width="1920" height="1080" decoding="async" loading="lazy" />
     <div class="invitation-overlay" aria-hidden="true"></div>
     <div class="container">
       <div class="invitation-grid">
@@ -828,7 +831,7 @@
 
   <!-- ============ REFERRALS ============ -->
   <section class="section section-referrals">
-    <img src="assets/compass-corner-clean-transparent.png" alt="" class="referrals-bg" aria-hidden="true" width="800" height="800" decoding="async" loading="lazy" />
+    <img src="assets/compass-corner-clean-transparent.webp" alt="" class="referrals-bg" aria-hidden="true" width="800" height="800" decoding="async" loading="lazy" />
     <div class="container">
       <div class="referrals-inner reveal">
         <div class="divider"></div>
@@ -919,5 +922,15 @@
 <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 <script defer src="script.js"></script>
 <script defer src="tbw.js"></script>
+
+<!-- Meta Pixel (deferred to after first paint - was render-blocking in head) -->
+<script>
+  window.addEventListener('load', function () {
+    !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init','3864806837147722');
+    fbq('track','PageView');
+  });
+</script>
+<noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=3864806837147722&ev=PageView&noscript=1" alt="" /></noscript>
 </body>
 </html>
