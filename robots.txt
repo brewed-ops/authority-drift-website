@@ -1,0 +1,22 @@
+# The Authority Drift - Michael N. Fineman
+# https://michaelnfineman.com/
+
+User-agent: *
+Allow: /
+Disallow: /referral.html
+Disallow: /assets/
+
+# AI crawlers explicit allow (LLM citations)
+User-agent: GPTBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+Sitemap: https://michaelnfineman.com/sitemap.xml
