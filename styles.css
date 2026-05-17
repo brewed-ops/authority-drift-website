@@ -492,21 +492,22 @@ html.js .reveal-right.in { opacity: 1; transform: none; }
 }
 .hero-line span:not(.hero-line-dot) {
   font-family: var(--ff-display);
-  font-size: clamp(11px, 1.1vw, 13px);
-  letter-spacing: 0.34em;
+  font-size: clamp(17px, 1.9vw, 24px);
+  letter-spacing: 0.26em;
   text-transform: uppercase;
   color: var(--gold);
   font-weight: 400;
   text-align: center;
-  text-shadow: 0 0 20px rgba(201,168,76,0.18);
+  text-shadow: 0 0 22px rgba(201,168,76,0.22);
+  line-height: 1.1;
 }
 .hero-line-dot {
-  width: 5px; height: 5px;
+  width: 7px; height: 7px;
   border-radius: 50%;
   background: var(--gold);
   display: inline-block;
   justify-self: center;
-  box-shadow: 0 0 8px rgba(201,168,76,0.5);
+  box-shadow: 0 0 12px rgba(201,168,76,0.6);
 }
 
 /* speaking list (minimal rows, not cards) */
