@@ -4224,3 +4224,21 @@ html.js .reveal-right.in { opacity: 1; transform: none; }
   .framework-cards { grid-template-columns: 1fr; gap: 14px; }
   .framework-card { padding: 28px 24px; }
 }
+
+/* Framework book visual - big editorial hero shot below the 4 cards */
+.framework-figure {
+  margin: clamp(56px, 7vw, 96px) auto 0;
+  max-width: 1280px;
+  padding: 0;
+  position: relative;
+}
+.framework-figure img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 2px;
+  filter: drop-shadow(0 30px 60px rgba(0,0,0,0.55)) drop-shadow(0 0 0 1px rgba(201,168,76,0.08));
+}
+@media (max-width: 720px) {
+  .framework-figure { margin-top: clamp(40px, 8vw, 56px); }
+}
