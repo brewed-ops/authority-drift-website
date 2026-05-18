@@ -275,9 +275,11 @@
         <video class="video-media" id="welcomeVideoEl" preload="none" playsinline poster="" controls hidden>
           <source src="assets/welcome-video.mp4" type="video/mp4" />
         </video>
+        <img src="assets/mike-speaker-stage-mic.webp" alt="" class="video-poster-fallback" aria-hidden="true" width="1200" height="800" decoding="async" loading="lazy" />
         <div class="video-placeholder">
+          <span class="video-caption">A Note From The Author &middot; Recording This June</span>
           <div class="video-play" aria-hidden="true"></div>
-          <span class="video-caption">Filming in late June &middot; Released with the book</span>
+          <span class="video-coming">Released alongside the book</span>
         </div>
       </div>
     </div>
@@ -307,25 +309,25 @@
     </div>
   </section>
 
-  <!-- ============ IN CONVERSATION (editorial masthead, third-party authority) ============ -->
+  <!-- ============ IN CONVERSATION (2x2 grid - centered eyebrow, hairline rule divisions) ============ -->
   <section class="section section-press" aria-label="In conversation">
     <div class="container">
       <div class="press-strip reveal">
-        <div class="press-head">
+        <header class="press-head">
           <span class="press-rule" aria-hidden="true"></span>
           <span class="press-eyebrow">In Conversation</span>
           <span class="press-rule" aria-hidden="true"></span>
-        </div>
+        </header>
         <ul class="press-grid">
-          <li class="press-item">
-            <span class="press-kind">Podcast</span>
-            <span class="press-name">The Purpose Effect</span>
-            <span class="press-meta">with Alesha &amp; David</span>
-          </li>
           <li class="press-item">
             <span class="press-kind">Keynote</span>
             <span class="press-name">Build For Men</span>
             <span class="press-meta">Identity &amp; calling</span>
+          </li>
+          <li class="press-item">
+            <span class="press-kind">Podcast</span>
+            <span class="press-name">The Purpose Effect</span>
+            <span class="press-meta">with Alesha &amp; David</span>
           </li>
           <li class="press-item">
             <span class="press-kind">Member</span>
@@ -493,14 +495,12 @@
   <section class="section section-testimonials">
     <div class="container">
       <div class="testimonials-layout">
-        <div class="testimonials-sticky">
-          <div class="section-head reveal">
-            <div class="divider"></div>
-            <span class="eyebrow">Testimonials</span>
-            <h2>What leaders are saying</h2>
-            <p class="lede">From readers, cohort participants, and leaders who walked the work.</p>
-          </div>
-        </div>
+        <header class="testimonials-head reveal">
+          <div class="divider"></div>
+          <span class="eyebrow">Testimonials</span>
+          <h2>What leaders are saying</h2>
+          <p class="lede">From readers, cohort participants, and leaders who walked the work.</p>
+        </header>
 
         <div class="testimonials-wall">
 
@@ -673,7 +673,7 @@
         <div class="faq-item reveal">
           <button class="faq-q" aria-expanded="false" aria-controls="faq-a-1">
             <span>What is <em>The Authority Drift</em> about?</span>
-            <span class="faq-icon" aria-hidden="true">+</span>
+            <span class="faq-icon" aria-hidden="true"></span>
           </button>
           <div class="faq-a" id="faq-a-1" role="region"><p>It's a book for leaders winning externally who feel quietly off internally. It names the drift between who you are and how you're operating, and offers the reset.</p></div>
         </div>
@@ -681,7 +681,7 @@
         <div class="faq-item reveal">
           <button class="faq-q" aria-expanded="false" aria-controls="faq-a-2">
             <span>Who is Michael writing for?</span>
-            <span class="faq-icon" aria-hidden="true">+</span>
+            <span class="faq-icon" aria-hidden="true"></span>
           </button>
           <div class="faq-a" id="faq-a-2" role="region"><p>High-performing leaders - executives, founders, operators - who are succeeding by every external measure but feel internally misaligned. Not beginners. Not hustlers.</p></div>
         </div>
@@ -689,7 +689,7 @@
         <div class="faq-item reveal">
           <button class="faq-q" aria-expanded="false" aria-controls="faq-a-3">
             <span>Is this faith-based?</span>
-            <span class="faq-icon" aria-hidden="true">+</span>
+            <span class="faq-icon" aria-hidden="true"></span>
           </button>
           <div class="faq-a" id="faq-a-3" role="region"><p>Michael's work is built on his faith and he doesn't hide it. The framework works for any leader regardless of belief - readers from different traditions have explicitly noted the integration as a strength.</p></div>
         </div>
@@ -697,7 +697,7 @@
         <div class="faq-item reveal">
           <button class="faq-q" aria-expanded="false" aria-controls="faq-a-4">
             <span>How do I bring Michael to speak at our event?</span>
-            <span class="faq-icon" aria-hidden="true">+</span>
+            <span class="faq-icon" aria-hidden="true"></span>
           </button>
           <div class="faq-a" id="faq-a-4" role="region"><p>Email <a href="mailto:team@authoritydriftbook.com?subject=Speaking%20Inquiry" style="color: var(--gold)">team@authoritydriftbook.com</a> with your event, audience, dates, and what outcome you want for the room.</p></div>
         </div>
@@ -747,31 +747,31 @@
 
       <div class="speaker-gallery reveal">
         <figure class="speaker-tile speaker-tile-hero">
-          <img src="assets/mike-speaker-stage-mic.webp" alt="Michael speaking at The Build" width="1200" height="800" decoding="async" loading="lazy" />
+          <img src="assets/mike-speaker-stage-mic.webp" alt="Michael speaking at Build For Men" width="1200" height="800" decoding="async" loading="lazy" />
           <figcaption>
             <span>Keynote</span>
-            <strong>The Build</strong>
+            <strong>Build For Men</strong>
           </figcaption>
         </figure>
         <figure class="speaker-tile speaker-tile-portrait">
           <img src="assets/mike-speaker-wife.webp" alt="Michael and his wife on stage" width="800" height="1000" decoding="async" loading="lazy" />
           <figcaption>
-            <span>Together on stage</span>
-            <strong>Faith &amp; Family</strong>
+            <span>Faith &amp; Family</span>
+            <strong>Together On Stage</strong>
           </figcaption>
         </figure>
         <figure class="speaker-tile speaker-tile-wide">
-          <img src="assets/mike-speaker-audience.webp" alt="Michael speaking to a large audience" width="1600" height="800" decoding="async" loading="lazy" />
+          <img src="assets/mike-speaker-audience.webp" alt="Michael speaking to a packed room" width="1600" height="800" decoding="async" loading="lazy" />
           <figcaption>
-            <span>The Room</span>
-            <strong>Wrapped In</strong>
+            <span>Live Audience</span>
+            <strong>The Room</strong>
           </figcaption>
         </figure>
         <figure class="speaker-tile speaker-tile-small">
-          <img src="assets/mike-speaker-stage.webp" alt="Michael at The Build event stage" width="800" height="1000" decoding="async" loading="lazy" />
+          <img src="assets/mike-speaker-stage.webp" alt="Michael behind the mic" width="800" height="1000" decoding="async" loading="lazy" />
           <figcaption>
-            <span>Behind the Mic</span>
-            <strong>The Build</strong>
+            <span>Podcast</span>
+            <strong>The Purpose Effect</strong>
           </figcaption>
         </figure>
       </div>
@@ -851,13 +851,16 @@
     <img src="assets/logo-compass-full-transparent.webp" alt="" class="final-compass" aria-hidden="true" width="600" height="600" decoding="async" loading="lazy" />
     <div class="container">
       <div class="final-inner reveal">
-        <div class="divider"></div>
-        <span class="eyebrow">A Quiet Invitation</span>
-        <h2>Same person.<br/><em>Every room.</em></h2>
-        <p>Start with the book.</p>
-        <div class="final-actions">
-          <a href="https://authoritydriftbook.com/authority" class="btn btn-primary">Read The Book</a>
-          <a href="referral.html" class="btn btn-ghost">Refer a Friend</a>
+        <div class="final-grid">
+          <div class="final-left">
+            <span class="final-mark" aria-hidden="true">&mdash;&#8202;Begin</span>
+            <h2 class="final-headline">Same person.<br/>Every room.</h2>
+          </div>
+          <div class="final-right">
+            <p class="final-body">A book on identity-based leadership for those winning externally and quietly negotiating internally. Start here.</p>
+            <a href="https://authoritydriftbook.com/authority" class="btn btn-primary final-cta-primary">Read The Book</a>
+            <a href="referral.html" class="final-cta-secondary">Refer a friend &rarr;</a>
+          </div>
         </div>
       </div>
     </div>
