@@ -1,5 +1,5 @@
 # The Authority Drift - Michael N. Fineman
-# https://michaelnfineman.com/
+# https://authoritydriftbook.com/
 
 User-agent: *
 Allow: /
@@ -19,4 +19,4 @@ Allow: /
 User-agent: Google-Extended
 Allow: /
 
-Sitemap: https://michaelnfineman.com/sitemap.xml
+Sitemap: https://authoritydriftbook.com/sitemap.xml

@@ -3,25 +3,25 @@
         xmlns:xhtml="http://www.w3.org/1999/xhtml"
         xmlns:image="http://www.sitemaps.org/schemas/sitemap-image/0.9">
   <url>
-    <loc>https://michaelnfineman.com/</loc>
+    <loc>https://authoritydriftbook.com/</loc>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
     <image:image>
-      <image:loc>https://michaelnfineman.com/assets/book-3d-mockup.png</image:loc>
+      <image:loc>https://authoritydriftbook.com/assets/book-3d-mockup.png</image:loc>
       <image:title>The Authority Drift - hardcover book by Michael N. Fineman</image:title>
     </image:image>
     <image:image>
-      <image:loc>https://michaelnfineman.com/assets/mike-fineman-headshot.jpg</image:loc>
+      <image:loc>https://authoritydriftbook.com/assets/mike-fineman-headshot.jpg</image:loc>
       <image:title>Michael N. Fineman - Author, Speaker</image:title>
     </image:image>
   </url>
   <url>
-    <loc>https://michaelnfineman.com/privacy.html</loc>
+    <loc>https://authoritydriftbook.com/privacy.html</loc>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
   <url>
-    <loc>https://michaelnfineman.com/terms.html</loc>
+    <loc>https://authoritydriftbook.com/terms.html</loc>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>

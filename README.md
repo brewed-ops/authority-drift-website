@@ -2,8 +2,8 @@
 
 Static marketing site for **Michael N. Fineman** and *The Authority Drift* book launch.
 
-- Live target domain: [michaelnfineman.com](https://michaelnfineman.com)
-- Funnel domain (Brandon's SLO): [authoritydriftbook.com](https://authoritydriftbook.com)
+- Live target domain: [authoritydriftbook.com](https://authoritydriftbook.com) (canonical - this site + Brandon's SLO funnel pages live here)
+- Vercel staging: [authority-drift-website.vercel.app](https://authority-drift-website.vercel.app)
 - Author: Michael N. Fineman
 - Operations: Kenneth Villar / BrewedOps
 - Stack: Vanilla HTML / CSS / JS - no build step
