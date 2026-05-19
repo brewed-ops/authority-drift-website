@@ -3344,116 +3344,69 @@ html.js .reveal-right.in { opacity: 1; transform: none; }
   margin: 0;
 }
 
-/* Pillars v5 - compass-anchored triad (the work emanates FROM the compass).
-   COMPASS sits BEHIND the names as a luminous halo. The 3 concept names
-   sit on top of it - lifted, glowing, like illuminated manuscript text
-   over a stamped seal. Descriptions sit beneath, anchored by the same axis. */
+/* Pillars v6 - typographic-only. No compass, no graphic, no ornament.
+   Pure editorial restraint. The 3 concepts are the brand - they don't
+   need a logo over them. Each thread gets: an italic serif name, a
+   short gold hairline beneath, then the description.
+   Reads like a Financial Times feature spread. */
 .reset-triad {
   margin: 0 auto clamp(80px, 9vw, 120px);
   max-width: 1180px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: clamp(48px, 5vw, 80px);
+  gap: clamp(40px, 4.5vw, 64px);
 }
-
-/* Stage - holds compass (behind) + names (front) in same stacking context */
-.reset-triad-stage {
-  position: relative;
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: clamp(48px, 7vw, 96px) 0;
-  min-height: clamp(280px, 32vw, 440px);
+/* Small italic overline as section sub-eyebrow */
+.reset-triad-overline {
+  font-family: var(--ff-serif);
+  font-style: italic;
+  font-size: clamp(1rem, 1.15vw, 1.15rem);
+  color: var(--gold);
+  opacity: 0.85;
+  letter-spacing: 0.04em;
 }
-
-/* Compass watermark - positioned absolutely behind the names.
-   Large, dim, with a soft gold halo, slow rotation. The compass becomes
-   the section's center of gravity, not a divider. */
-.reset-triad-compass {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: clamp(360px, 42vw, 560px);
-  aspect-ratio: 1 / 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  pointer-events: none;
-  z-index: 0;
-}
-/* Gold halo glow radiating outward from the compass */
-.reset-triad-compass::before {
-  content: '';
-  position: absolute;
-  inset: -15%;
-  background: radial-gradient(circle,
-    rgba(201, 168, 76, 0.16) 0%,
-    rgba(201, 168, 76, 0.08) 35%,
-    transparent 70%);
-  filter: blur(40px);
-}
-.reset-triad-compass-img {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  opacity: 0.18;
-  animation: resetCompassSlowSpin 180s linear infinite;
-  filter: drop-shadow(0 8px 32px rgba(201, 168, 76, 0.2));
-}
-@keyframes resetCompassSlowSpin {
-  from { transform: rotate(0deg); }
-  to   { transform: rotate(360deg); }
-}
-@media (prefers-reduced-motion: reduce) {
-  .reset-triad-compass-img { animation: none; }
-}
-
-/* Names row - the 3 concepts arrayed across the compass.
-   Each name lifted above its segment of the compass. */
-.reset-triad-names {
-  position: relative;
-  z-index: 1;
+.reset-triad-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: clamp(24px, 3vw, 48px);
+  gap: clamp(40px, 5vw, 80px);
   width: 100%;
   max-width: 1080px;
-  text-align: center;
 }
-.reset-triad-name {
+.reset-thread {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: clamp(18px, 2vw, 24px);
+  padding: clamp(8px, 1vw, 16px) 0;
+}
+.reset-thread-title {
   font-family: var(--ff-serif);
   font-style: italic;
   font-weight: 500;
-  font-size: clamp(1.6rem, 2.6vw, 2.4rem);
+  font-size: clamp(1.65rem, 2.6vw, 2.3rem);
   letter-spacing: -0.012em;
   color: var(--warm-white);
   line-height: 1.15;
-  /* Subtle text-shadow so names remain crisp over the compass */
-  text-shadow: 0 1px 12px rgba(10, 10, 10, 0.85);
+  margin: 0;
 }
-
-/* Descriptions row - 3 columns aligned beneath the 3 names */
-.reset-triad-descs {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: clamp(32px, 4vw, 64px);
-  width: 100%;
-  max-width: 1080px;
+/* Tiny gold hairline beneath each name - the only ornament */
+.reset-thread-rule {
+  display: block;
+  width: 40px;
+  height: 1px;
+  background: linear-gradient(90deg,
+    transparent 0%, var(--gold) 50%, transparent 100%);
+  opacity: 0.75;
 }
-.reset-triad-desc {
-  text-align: center;
-}
-.reset-triad-desc p {
+.reset-thread-body {
   font-family: var(--ff-serif);
   font-size: clamp(1.05rem, 1.2vw, 1.18rem);
   line-height: 1.6;
   color: var(--text-muted);
   max-width: 32ch;
-  margin: 0 auto;
+  margin: 0;
 }
 
 /* Rooms block - 6 mini-cards in 3x2 grid */
@@ -3571,22 +3524,17 @@ html.js .reveal-right.in { opacity: 1; transform: none; }
 }
 
 @media (max-width: 980px) {
-  .reset-triad-names { grid-template-columns: 1fr; gap: 18px; }
-  .reset-triad-name { font-size: 1.5rem; }
-  .reset-triad-stage { padding: clamp(56px, 9vw, 88px) 0; min-height: 320px; }
-  .reset-triad-compass { width: clamp(280px, 60vw, 380px); }
-  .reset-triad-descs { grid-template-columns: 1fr; gap: 28px; max-width: 480px; margin: 0 auto; }
+  .reset-triad-grid { grid-template-columns: 1fr; gap: 48px; max-width: 520px; margin: 0 auto; }
+  .reset-thread-title { font-size: 1.6rem; }
   .reset-rooms { grid-template-columns: repeat(2, 1fr); }
 }
 @media (max-width: 720px) {
   .section-reset { padding: clamp(64px, 12vw, 96px) 0; }
   .reset-head h2 { font-size: clamp(2rem, 7vw, 2.4rem); }
   .reset-lede { font-size: 1.1rem; }
-  .reset-triad-stage { padding: 56px 0; min-height: 360px; }
-  .reset-triad-compass { width: 260px; }
-  .reset-triad-compass-img { opacity: 0.16; }
-  .reset-triad-name { font-size: 1.4rem; }
-  .reset-triad-desc p { font-size: 1.02rem; }
+  .reset-triad-grid { gap: 36px; }
+  .reset-thread-title { font-size: 1.5rem; }
+  .reset-thread-body { font-size: 1.02rem; }
   .reset-rooms { grid-template-columns: 1fr; }
   .reset-room { text-align: left; padding: 24px 22px; }
   .reset-rooms-head::before, .reset-rooms-head::after { width: 28px; margin: 0 10px; }
