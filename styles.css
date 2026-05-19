@@ -2493,8 +2493,8 @@ html.js .reveal-right.in { opacity: 1; transform: none; }
 
 /* ============ HERO eyebrow (bigger for older eyes) ============ */
 .eyebrow-hero {
-  font-size: clamp(13px, 1.25vw, 16px) !important;
-  letter-spacing: 0.3em !important;
+  font-size: clamp(16px, 1.55vw, 20px) !important;
+  letter-spacing: 0.26em !important;
 }
 
 /* ============ Reset rooms now clickable anchors ============ */
