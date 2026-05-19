@@ -5768,11 +5768,11 @@ html.js .reveal-right.in { opacity: 1; transform: none; }
 .landing-form label { display: flex; flex-direction: column; gap: 8px; }
 .landing-form-label {
   font-family: var(--ff-display);
-  font-size: 11px;
-  letter-spacing: 0.24em;
+  font-size: 14px;
+  letter-spacing: 0.22em;
   text-transform: uppercase;
   color: var(--gold);
-  opacity: 0.85;
+  opacity: 0.9;
 }
 .landing-form input,
 .landing-form select,
@@ -5781,8 +5781,8 @@ html.js .reveal-right.in { opacity: 1; transform: none; }
   border: 1px solid rgba(201, 168, 76, 0.22);
   color: var(--warm-white);
   font-family: var(--ff-serif);
-  font-size: 1.05rem;
-  padding: 12px 14px;
+  font-size: 1.15rem;
+  padding: 14px 16px;
   outline: none;
   transition: border-color 0.25s var(--ease-out);
 }
