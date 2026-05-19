@@ -2487,6 +2487,161 @@ html.js .reveal-right.in { opacity: 1; transform: none; }
   .experience-tile { min-height: 110px; flex-direction: row; align-items: center; gap: 16px; }
   .experience-tile-meta { flex: 1; }
 }
+
+/* ============ MASTERMIND - OWN PREMIUM SECTION (2026-05-20) ============
+   Replaces the inline banner inside Offers. Big editorial 2x2 grid
+   of feature cards with full-bleed photos, dark gradient overlay,
+   and bottom-anchored text. Designed to feel premium / aspirational.
+================================================================== */
+.section-mastermind {
+  position: relative;
+  isolation: isolate;
+}
+.section-mastermind::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse 60% 50% at 50% 0%, rgba(201,168,76,0.08), transparent 65%);
+}
+
+.mastermind-feature-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(20px, 2.4vw, 28px);
+  max-width: 1320px;
+  margin: 0 auto;
+}
+
+.mastermind-feature {
+  position: relative;
+  height: clamp(360px, 38vw, 480px);
+  border-radius: 6px;
+  overflow: hidden;
+  isolation: isolate;
+  border: 1px solid rgba(201, 168, 76, 0.22);
+  background: linear-gradient(135deg, #1a1a1a 0%, #0a0a0a 100%);
+  transition: transform 0.5s var(--ease-out), border-color 0.5s var(--ease-out),
+              box-shadow 0.5s var(--ease-out);
+}
+.mastermind-feature:hover {
+  transform: translateY(-4px);
+  border-color: rgba(201, 168, 76, 0.6);
+  box-shadow: 0 28px 60px -28px rgba(0,0,0,0.7);
+}
+
+.mastermind-feature-image {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+}
+.mastermind-feature-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  transition: transform 1.4s var(--ease-out);
+}
+.mastermind-feature:hover .mastermind-feature-image img {
+  transform: scale(1.06);
+}
+
+.mastermind-feature-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background:
+    linear-gradient(180deg,
+      rgba(0,0,0,0.05) 0%,
+      rgba(0,0,0,0.35) 50%,
+      rgba(0,0,0,0.86) 100%);
+  pointer-events: none;
+}
+.mastermind-feature::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  border-top: 1px solid transparent;
+  border-bottom: 3px solid var(--gold);
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 0.6s var(--ease-out);
+}
+.mastermind-feature:hover::after { transform: scaleX(1); }
+
+.mastermind-feature-body {
+  position: absolute;
+  inset: auto 0 0 0;
+  z-index: 3;
+  padding: clamp(28px, 3vw, 40px);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  transition: transform 0.5s var(--ease-out);
+}
+.mastermind-feature:hover .mastermind-feature-body {
+  transform: translateY(-4px);
+}
+.mastermind-feature-tag {
+  font-family: var(--ff-display);
+  font-size: clamp(12px, 1.05vw, 14px);
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--gold);
+  opacity: 0.92;
+}
+.mastermind-feature-title {
+  font-family: var(--ff-serif);
+  font-weight: 500;
+  font-size: clamp(1.6rem, 2.2vw, 2.2rem);
+  line-height: 1.1;
+  letter-spacing: -0.012em;
+  color: var(--warm-white);
+  margin: 0;
+}
+.mastermind-feature-loc {
+  font-family: var(--ff-serif);
+  font-size: clamp(0.95rem, 1.05vw, 1.05rem);
+  color: var(--ink-soft);
+  letter-spacing: 0.02em;
+  margin: 4px 0 0;
+  opacity: 0.85;
+}
+
+.mastermind-cta-row {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 18px;
+  margin-top: clamp(48px, 5vw, 72px);
+  text-align: center;
+  max-width: 720px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.mastermind-cta-note {
+  font-family: var(--ff-serif);
+  font-style: italic;
+  font-size: clamp(1rem, 1.15vw, 1.1rem);
+  color: var(--text-muted);
+  margin: 0;
+  line-height: 1.55;
+}
+.mastermind-cta-row .btn {
+  padding: 18px 36px;
+  font-size: 14px;
+  letter-spacing: 0.22em;
+}
+
+@media (max-width: 880px) {
+  .mastermind-feature-grid { grid-template-columns: 1fr; gap: 18px; }
+  .mastermind-feature { height: 320px; }
+}
 @media (max-width: 720px) {
   .mastermind-banner-inner { padding: 0; }
 }
