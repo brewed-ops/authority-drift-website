@@ -3314,14 +3314,25 @@ html.js .reveal-right.in { opacity: 1; transform: none; }
   position: absolute;
   inset: -40px;  /* slight overscan so blur edges don't show */
   background-image: url('assets/book-pattern-bg.webp');
-  background-size: 120% auto;  /* zoom in so fewer covers visible */
-  background-position: center center;
+  background-size: 75% auto;  /* left-anchored, covers visible at recognizable scale */
+  background-position: left center;
   background-repeat: no-repeat;
-  opacity: 0.06;
-  filter: saturate(0) brightness(0.6) contrast(1.1) blur(14px);
-  mix-blend-mode: luminosity;
+  opacity: 0.18;
+  filter: saturate(0.25) brightness(0.85) contrast(1.05);
   pointer-events: none;
   z-index: -2;
+  /* Horizontal mask: pattern fully visible on the LEFT, fades to
+     transparent at 60% so the right column (text + CTA) stays clean. */
+  -webkit-mask-image: linear-gradient(90deg,
+    rgba(0,0,0,0.95) 0%,
+    rgba(0,0,0,0.85) 25%,
+    rgba(0,0,0,0.4) 50%,
+    transparent 70%);
+          mask-image: linear-gradient(90deg,
+    rgba(0,0,0,0.95) 0%,
+    rgba(0,0,0,0.85) 25%,
+    rgba(0,0,0,0.4) 50%,
+    transparent 70%);
 }
 /* Compass: pushed to right edge as ornament. No longer dominates background.
    Sits behind the asymmetric layout where the right column ends. */
