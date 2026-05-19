@@ -198,10 +198,10 @@ html.js .reveal-right.in { opacity: 1; transform: none; }
   filter: drop-shadow(0 4px 18px rgba(201,168,76,0.45));
 }
 .nav.scrolled .brand img.brand-logo { width: 48px; height: 48px; }
-.brand-text { display: flex; flex-direction: column; gap: 4px; line-height: 1; }
+.brand-text { display: flex; flex-direction: column; gap: 5px; line-height: 1; }
 .brand-line-1 {
   font-family: var(--ff-display);
-  font-size: 22px;
+  font-size: 28px;
   letter-spacing: 0.06em;
   text-transform: uppercase;
   color: var(--warm-white);
@@ -209,7 +209,7 @@ html.js .reveal-right.in { opacity: 1; transform: none; }
   font-weight: 400;
 }
 .brand-line-2 {
-  font-size: 9.5px;
+  font-size: 11.5px;
   letter-spacing: 0.32em;
   color: var(--gold);
   text-transform: uppercase;
@@ -2122,17 +2122,122 @@ html.js .reveal-right.in { opacity: 1; transform: none; }
   align-items: stretch;
 }
 
-/* ============ OFFERS - COMPACT 3-CARD GRID (premium) ============ */
+/* ============ OFFERS - 4-CARD GRID (Book / Course / Community / Cohort) ============ */
 .offers-cards {
   display: grid;
-  /* Asymmetric grid: center card slightly larger to anchor visual emphasis,
-     breaking the AI-slop "3 equal columns" pattern. */
-  grid-template-columns: 1fr 1.18fr 1fr;
-  gap: 22px;
-  max-width: 1280px;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  max-width: 1320px;
   margin: 0 auto;
   align-items: stretch;
 }
+@media (max-width: 1100px) {
+  .offers-cards { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 640px) {
+  .offers-cards { grid-template-columns: 1fr; }
+}
+
+/* ============ MASTERMIND BANNER (after the 4 offer cards) ============ */
+.mastermind-banner {
+  margin: clamp(40px, 5vw, 64px) auto 0;
+  max-width: 1320px;
+  background: linear-gradient(135deg,
+    rgba(24, 22, 14, 0.88) 0%,
+    rgba(14, 13, 10, 0.92) 100%);
+  border: 1px solid rgba(201, 168, 76, 0.32);
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+}
+.mastermind-banner::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 8%;
+  right: 8%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold) 50%, transparent);
+}
+.mastermind-banner::after {
+  content: '';
+  position: absolute;
+  inset: -10% -20% -10% 40%;
+  background: radial-gradient(ellipse, rgba(201,168,76,0.10), transparent 65%);
+  z-index: -1;
+  pointer-events: none;
+}
+.mastermind-banner-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 14px;
+  padding: clamp(36px, 4vw, 56px) clamp(36px, 5vw, 72px);
+}
+.mastermind-banner-eyebrow {
+  font-family: var(--ff-display);
+  font-size: clamp(11px, 1vw, 13px);
+  letter-spacing: 0.36em;
+  text-transform: uppercase;
+  color: var(--gold);
+  opacity: 0.85;
+}
+.mastermind-banner-title {
+  font-family: var(--ff-serif);
+  font-weight: 500;
+  font-size: clamp(1.5rem, 2.4vw, 2.1rem);
+  letter-spacing: -0.012em;
+  color: var(--warm-white);
+  line-height: 1.15;
+  margin: 0;
+}
+.mastermind-banner-body {
+  font-family: var(--ff-serif);
+  font-size: clamp(1rem, 1.15vw, 1.1rem);
+  line-height: 1.55;
+  color: var(--text-muted);
+  max-width: 64ch;
+  margin: 0;
+}
+.mastermind-banner-cta {
+  font-family: var(--ff-display);
+  font-size: clamp(11px, 1vw, 13px);
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--gold);
+  padding: 14px 26px;
+  border: 1px solid rgba(201, 168, 76, 0.45);
+  margin-top: 8px;
+  transition: color 0.25s var(--ease-out), background 0.25s var(--ease-out),
+              border-color 0.25s var(--ease-out);
+}
+.mastermind-banner-cta span { display: inline-block; transition: transform 0.3s var(--ease-out); margin-left: 4px; }
+.mastermind-banner-cta:hover {
+  color: var(--warm-white);
+  background: rgba(201, 168, 76, 0.12);
+  border-color: rgba(201, 168, 76, 0.7);
+}
+.mastermind-banner-cta:hover span { transform: translateX(4px); }
+@media (max-width: 720px) {
+  .mastermind-banner-inner { padding: 32px 24px; }
+}
+
+/* ============ HERO eyebrow (bigger for older eyes) ============ */
+.eyebrow-hero {
+  font-size: clamp(13px, 1.25vw, 16px) !important;
+  letter-spacing: 0.3em !important;
+}
+
+/* ============ Reset rooms now clickable anchors ============ */
+.reset-room {
+  text-decoration: none;
+  cursor: pointer;
+}
+.reset-room:hover .reset-room-name {
+  color: var(--gold);
+  transition: color 0.3s var(--ease-out);
+}
+.reset-room .reset-room-name { transition: color 0.3s var(--ease-out); }
 .offer-card {
   position: relative;
   display: flex;
@@ -3342,6 +3447,19 @@ html.js .reveal-right.in { opacity: 1; transform: none; }
   color: var(--gold);
   opacity: 0.7;
   margin: 0;
+}
+.reset-continuation {
+  font-family: var(--ff-serif);
+  font-size: clamp(16px, 1.35vw, 19px);
+  line-height: 1.65;
+  color: var(--ink-soft);
+  max-width: 760px;
+  margin: 28px auto 0;
+  text-align: center;
+}
+.reset-continuation em {
+  font-style: italic;
+  color: var(--gold);
 }
 
 /* Pillars v9 - premium centered cards. Each thread is a refined card:
@@ -5199,4 +5317,85 @@ html.js .reveal-right.in { opacity: 1; transform: none; }
 }
 @media (max-width: 720px) {
   .framework-figure { margin-top: clamp(40px, 8vw, 56px); }
+}
+
+/* ============ LANDING PAGES (book-call, speaking-inquiry) ============ */
+.landing-page { min-height: 100vh; }
+.container-narrow { max-width: 760px; margin: 0 auto; padding: 0 var(--gutter); }
+.landing-hero { padding: clamp(96px, 14vw, 180px) 0 clamp(80px, 10vw, 120px); }
+.landing-headline {
+  font-family: var(--ff-serif);
+  font-weight: 500;
+  font-size: clamp(2.2rem, 4.8vw, 3.6rem);
+  line-height: 1.08;
+  letter-spacing: -0.018em;
+  color: var(--warm-white);
+  margin: 16px 0 28px;
+}
+.landing-lede {
+  font-family: var(--ff-serif);
+  font-size: clamp(1.1rem, 1.4vw, 1.28rem);
+  line-height: 1.55;
+  color: var(--text-muted);
+  max-width: 60ch;
+  margin: 0 0 clamp(40px, 5vw, 64px);
+}
+.landing-form {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+  background: linear-gradient(180deg, rgba(20, 19, 15, 0.55) 0%, rgba(12, 12, 12, 0.35) 100%);
+  border: 1px solid rgba(201, 168, 76, 0.18);
+  padding: clamp(28px, 4vw, 48px);
+}
+.landing-form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 22px;
+}
+@media (max-width: 640px) {
+  .landing-form-row { grid-template-columns: 1fr; }
+}
+.landing-form label { display: flex; flex-direction: column; gap: 8px; }
+.landing-form-label {
+  font-family: var(--ff-display);
+  font-size: 11px;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--gold);
+  opacity: 0.85;
+}
+.landing-form input,
+.landing-form select,
+.landing-form textarea {
+  background: rgba(8, 8, 8, 0.6);
+  border: 1px solid rgba(201, 168, 76, 0.22);
+  color: var(--warm-white);
+  font-family: var(--ff-serif);
+  font-size: 1.05rem;
+  padding: 12px 14px;
+  outline: none;
+  transition: border-color 0.25s var(--ease-out);
+}
+.landing-form input:focus,
+.landing-form select:focus,
+.landing-form textarea:focus {
+  border-color: var(--gold);
+}
+.landing-form textarea { resize: vertical; min-height: 120px; }
+.landing-submit { margin-top: 8px; align-self: flex-start; }
+.landing-form-note {
+  font-family: var(--ff-serif);
+  font-style: italic;
+  font-size: 0.95rem;
+  color: var(--text-muted);
+  margin: 4px 0 0;
+}
+.footer-fineprint {
+  text-align: center;
+  font-family: var(--ff-serif);
+  font-size: 0.92rem;
+  color: var(--text-muted);
+  padding: 24px 0;
+  margin: 0;
 }
