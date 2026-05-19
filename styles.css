@@ -3289,6 +3289,352 @@ html.js .reveal-right.in { opacity: 1; transform: none; }
   font-family: var(--ff-serif);
 }
 
+/* ============ THE AUTHORITY RESET (v2 - editorial manifesto) ============
+   Mike voice: short staccato declarations, contrast pattern ("X. Not Y.")
+   Visual: classical Roman numerals, asymmetric pillar layout, rooms as
+   typographic mini-cards (NOT a dashed ledger - that read as cheap).
+   Centered manifesto opening, three-pillar middle, six-room grid below. */
+.section-reset {
+  padding: clamp(96px, 12vw, 160px) 0;
+  position: relative;
+  isolation: isolate;
+}
+.section-reset::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(60% 35% at 50% 8%, rgba(201,168,76,0.05), transparent 75%);
+  z-index: -1;
+  pointer-events: none;
+}
+
+/* Manifesto head - centered, headline weight, two-line contrast pattern */
+.reset-head {
+  text-align: center;
+  max-width: 880px;
+  margin: 0 auto clamp(64px, 7vw, 96px);
+}
+.reset-head .divider { margin-left: auto; margin-right: auto; }
+.reset-head h2 {
+  font-size: clamp(2.2rem, 4.8vw, 3.8rem);
+  line-height: 1.05;
+  letter-spacing: -0.018em;
+  margin-bottom: clamp(28px, 3vw, 40px);
+}
+.reset-lede {
+  font-family: var(--ff-serif);
+  font-size: clamp(1.15rem, 1.6vw, 1.45rem);
+  line-height: 1.5;
+  color: var(--warm-white);
+  max-width: 32ch;
+  margin: 0 auto 18px;
+}
+.reset-lede em {
+  font-style: italic;
+  color: var(--gold);
+  font-family: var(--ff-serif);
+}
+.reset-sub {
+  font-family: var(--ff-display);
+  font-size: clamp(11px, 1.05vw, 13px);
+  letter-spacing: 0.34em;
+  text-transform: uppercase;
+  color: var(--gold);
+  opacity: 0.7;
+  margin: 0;
+}
+
+/* Three pillars - Roman numerals as classical anchor */
+.reset-pillars {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(28px, 3.5vw, 56px);
+  margin: 0 auto clamp(80px, 9vw, 120px);
+  max-width: 1180px;
+}
+
+.reset-pillar {
+  position: relative;
+  text-align: left;
+  padding: clamp(28px, 3vw, 40px) clamp(20px, 2.4vw, 32px) clamp(20px, 2vw, 28px);
+}
+/* Number tag - brand display font (Bebas Neue), small uppercase caps.
+   Matches the eyebrow vocabulary on the rest of the site. */
+.reset-pillar-num {
+  font-family: var(--ff-display);
+  font-size: clamp(11px, 1.05vw, 13px);
+  letter-spacing: 0.36em;
+  color: var(--gold);
+  opacity: 0.85;
+  line-height: 1;
+  display: block;
+  margin-bottom: clamp(16px, 1.8vw, 22px);
+  padding-bottom: 14px;
+  border-bottom: 1px solid rgba(201, 168, 76, 0.25);
+  width: fit-content;
+}
+.reset-pillar-content {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+/* Title - brand display caps (same family as page-wide eyebrows + names) */
+.reset-pillar-title {
+  font-family: var(--ff-display);
+  font-weight: 400;
+  font-size: clamp(1.5rem, 2.2vw, 2rem);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--warm-white);
+  line-height: 1.05;
+}
+.reset-pillar-body {
+  font-family: var(--ff-serif);
+  font-size: clamp(1.08rem, 1.25vw, 1.22rem);
+  line-height: 1.6;
+  color: var(--text-muted);
+}
+
+/* Rooms block - 6 mini-cards in 3x2 grid */
+.reset-rooms-block {
+  max-width: 1180px;
+  margin: 0 auto;
+}
+.reset-rooms-head {
+  text-align: center;
+  margin-bottom: clamp(40px, 5vw, 64px);
+  position: relative;
+}
+.reset-rooms-head::before,
+.reset-rooms-head::after {
+  content: '';
+  display: inline-block;
+  width: clamp(40px, 6vw, 80px);
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold-dim), transparent);
+  vertical-align: middle;
+  margin: 0 18px;
+  opacity: 0.7;
+}
+.reset-rooms-eyebrow {
+  font-family: var(--ff-display);
+  font-size: clamp(13px, 1.2vw, 15px);
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: var(--gold);
+  display: inline-block;
+}
+.reset-rooms {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  background: rgba(201, 168, 76, 0.12);
+  border: 1px solid rgba(201, 168, 76, 0.18);
+  margin-bottom: clamp(48px, 6vw, 72px);
+}
+.reset-room {
+  background: rgba(10, 10, 10, 0.4);
+  padding: clamp(36px, 3.5vw, 52px) clamp(28px, 3.2vw, 40px);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  text-align: center;
+  transition: background 0.35s var(--ease-out);
+}
+.reset-room:hover {
+  background: rgba(26, 24, 18, 0.55);
+}
+/* Sizes bumped for older executive readers (50+).
+   Tag 13-15px, name 1.5-1.85rem, desc 1.1-1.22rem - all comfortable for
+   bifocals + reading glasses. Italic still readable at this size. */
+.reset-room-tag {
+  font-family: var(--ff-display);
+  font-size: clamp(12px, 1.05vw, 14px);
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--gold);
+  opacity: 0.8;
+  line-height: 1.2;
+  margin-bottom: 6px;
+}
+.reset-room-name {
+  font-family: var(--ff-serif);
+  font-weight: 500;
+  font-size: clamp(1.35rem, 1.85vw, 1.75rem);
+  color: var(--warm-white);
+  line-height: 1.2;
+  letter-spacing: -0.005em;
+  margin: 0;
+}
+.reset-room-desc {
+  font-family: var(--ff-serif);
+  font-style: italic;
+  font-size: clamp(1.05rem, 1.2vw, 1.18rem);
+  color: var(--text-muted);
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* Dual CTA row */
+.reset-cta-row {
+  display: flex;
+  justify-content: center;
+  gap: clamp(16px, 2vw, 28px);
+  flex-wrap: wrap;
+}
+.reset-cta {
+  font-family: var(--ff-display);
+  font-size: clamp(11px, 1vw, 13px);
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--gold);
+  padding: 14px 26px;
+  border: 1px solid rgba(201, 168, 76, 0.4);
+  transition: color 0.25s var(--ease-out), background 0.25s var(--ease-out),
+              border-color 0.25s var(--ease-out);
+}
+.reset-cta span { display: inline-block; transition: transform 0.3s var(--ease-out); margin-left: 4px; }
+.reset-cta:hover {
+  color: var(--warm-white);
+  background: rgba(201, 168, 76, 0.08);
+  border-color: rgba(201, 168, 76, 0.6);
+}
+.reset-cta:hover span { transform: translateX(4px); }
+.reset-cta-alt {
+  background: rgba(201, 168, 76, 0.12);
+  color: var(--warm-white);
+  border-color: rgba(201, 168, 76, 0.55);
+}
+.reset-cta-alt:hover {
+  background: rgba(201, 168, 76, 0.22);
+}
+
+@media (max-width: 980px) {
+  .reset-pillars {
+    grid-template-columns: 1fr;
+    max-width: 560px;
+    gap: 32px;
+  }
+  .reset-pillars::before, .reset-pillars::after { display: none; }
+  .reset-pillar { padding: 20px 0; border-bottom: 1px solid rgba(201, 168, 76, 0.15); }
+  .reset-pillar:last-child { border-bottom: none; }
+  .reset-rooms { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 720px) {
+  .section-reset { padding: clamp(64px, 12vw, 96px) 0; }
+  .reset-head h2 { font-size: clamp(2rem, 7vw, 2.4rem); }
+  .reset-lede { font-size: 1.1rem; }
+  .reset-rooms { grid-template-columns: 1fr; }
+  .reset-room { text-align: left; padding: 24px 22px; }
+  .reset-rooms-head::before, .reset-rooms-head::after { width: 28px; margin: 0 10px; }
+  .reset-cta-row { flex-direction: column; gap: 12px; }
+  .reset-cta { text-align: center; }
+}
+
+/* ============ WORK WITH MICHAEL ============
+   3-card offering panel: Speaking, Executive Program, 1:1 Coaching.
+   Middle card (Executive Program) gets featured treatment - gold rule
+   on top, slightly lifted, more visual weight. Cards use the same dark
+   tile vocabulary as the offer-card system but tighter. */
+.section-work {
+  padding: clamp(96px, 12vw, 160px) 0;
+}
+.work-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(20px, 2vw, 28px);
+  margin-top: clamp(56px, 6vw, 88px);
+  max-width: 1280px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.work-card {
+  position: relative;
+  padding: clamp(36px, 3.5vw, 56px) clamp(28px, 3vw, 40px);
+  background: linear-gradient(180deg, rgba(20,19,15,0.6) 0%, rgba(14,14,14,0.45) 100%);
+  border: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  transition: transform 0.5s var(--ease-out), border-color 0.4s var(--ease-out),
+              background 0.4s var(--ease-out);
+}
+.work-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(201, 168, 76, 0.35);
+  background: linear-gradient(180deg, rgba(26,24,18,0.7) 0%, rgba(18,18,18,0.55) 100%);
+}
+/* Featured middle card - more presence */
+.work-card-featured {
+  background: linear-gradient(180deg, rgba(26,24,18,0.85) 0%, rgba(18,17,14,0.65) 100%);
+  border-color: rgba(201, 168, 76, 0.28);
+}
+.work-card-featured::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 18%;
+  right: 18%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent 0%, var(--gold) 50%, transparent 100%);
+}
+.work-card-featured:hover {
+  border-color: rgba(201, 168, 76, 0.5);
+}
+.work-tag {
+  font-family: var(--ff-display);
+  font-size: clamp(10px, 0.95vw, 12px);
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: var(--gold);
+  opacity: 0.85;
+  line-height: 1.2;
+}
+.work-title {
+  font-family: var(--ff-serif);
+  font-weight: 500;
+  font-size: clamp(1.45rem, 2vw, 1.9rem);
+  letter-spacing: -0.008em;
+  color: var(--warm-white);
+  line-height: 1.15;
+  margin: 0;
+}
+.work-body {
+  font-family: var(--ff-serif);
+  font-size: clamp(0.98rem, 1.1vw, 1.06rem);
+  line-height: 1.62;
+  color: var(--text-muted);
+  flex-grow: 1;
+}
+.work-cta {
+  font-family: var(--ff-display);
+  font-size: clamp(11px, 1vw, 13px);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--gold);
+  padding-top: 8px;
+  border-top: 1px solid rgba(201, 168, 76, 0.18);
+  margin-top: 4px;
+  transition: color 0.25s var(--ease-out), letter-spacing 0.25s var(--ease-out);
+}
+.work-cta span { display: inline-block; transition: transform 0.3s var(--ease-out); }
+.work-cta:hover {
+  color: var(--warm-white);
+  letter-spacing: 0.22em;
+}
+.work-cta:hover span { transform: translateX(4px); }
+
+@media (max-width: 980px) {
+  .work-grid { grid-template-columns: 1fr; max-width: 560px; gap: 18px; }
+  .work-card { padding: 32px 28px; }
+}
+@media (max-width: 720px) {
+  .section-work { padding: clamp(64px, 12vw, 96px) 0; }
+  .work-card { padding: 28px 22px; gap: 14px; }
+  .work-title { font-size: 1.3rem; }
+  .work-body { font-size: 0.96rem; line-height: 1.55; }
+}
+
 /* ============ FINAL CTA ============ */
 .final-cta {
   position: relative;
