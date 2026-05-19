@@ -295,7 +295,21 @@
     <div class="container">
       <div class="book-layout">
         <div class="book-visual reveal">
-          <img src="assets/book-3d-mockup.webp" alt="The Authority Drift - hardcover book" class="book-mockup" width="800" height="800" decoding="async" loading="lazy" />
+          <div class="book-carousel" id="bookCarousel" aria-label="The Authority Drift - rotating book mockups">
+            <button class="book-nav book-nav-prev" id="bookPrev" aria-label="Previous mockup" type="button">
+              <svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true"><path d="M15 6l-6 6 6 6" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+            <button class="book-nav book-nav-next" id="bookNext" aria-label="Next mockup" type="button">
+              <svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true"><path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+            <div class="book-slides-wrap">
+              <img src="assets/book-mockup-03-front.webp" alt="The Authority Drift - front cover" class="book-slide active" width="1200" height="1628" decoding="async" />
+              <img src="assets/book-mockup-01-pair.webp" alt="The Authority Drift - front and back cover with chapter list" class="book-slide" width="1200" height="1046" decoding="async" loading="lazy" />
+              <img src="assets/book-mockup-02-angled.webp" alt="The Authority Drift - paperback angled view" class="book-slide" width="1200" height="1743" decoding="async" loading="lazy" />
+              <img src="assets/book-mockup-04-hardcover.webp" alt="The Authority Drift - hardcover angled view" class="book-slide" width="1200" height="1512" decoding="async" loading="lazy" />
+            </div>
+            <div class="book-dots" id="bookDots" aria-hidden="true"></div>
+          </div>
         </div>
         <div class="book-copy reveal">
           <div class="divider"></div>

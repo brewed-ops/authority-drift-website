@@ -209,6 +209,70 @@
     start();
   }
 
+  /* ---------- book mockup carousel (auto + manual prev/next + dots) ---------- */
+  const bookCarousel = document.getElementById('bookCarousel');
+  if (bookCarousel) {
+    const slides  = Array.from(bookCarousel.querySelectorAll('.book-slide'));
+    const prevBtn = document.getElementById('bookPrev');
+    const nextBtn = document.getElementById('bookNext');
+    const dotsEl  = document.getElementById('bookDots');
+
+    let idx = 0;
+    let timer = null;
+    const BOOK_AUTO_MS = 4000;
+
+    // Build dots
+    if (dotsEl) {
+      slides.forEach((_, i) => {
+        const d = document.createElement('button');
+        d.type = 'button';
+        d.className = 'book-dot';
+        d.setAttribute('aria-label', `Show mockup ${i + 1}`);
+        d.addEventListener('click', () => bookGo(i, true));
+        dotsEl.appendChild(d);
+      });
+    }
+    const dots = dotsEl ? Array.from(dotsEl.children) : [];
+
+    const bookUpdate = () => {
+      slides.forEach((s, i) => s.classList.toggle('active', i === idx));
+      dots.forEach((d, i) => d.classList.toggle('active', i === idx));
+    };
+
+    const bookGo = (i, userTriggered = false) => {
+      idx = (i + slides.length) % slides.length;
+      bookUpdate();
+      if (userTriggered) bookRestart();
+    };
+
+    const bookStart = () => {
+      bookStop();
+      timer = setInterval(() => bookGo(idx + 1), BOOK_AUTO_MS);
+    };
+    const bookStop = () => { if (timer) { clearInterval(timer); timer = null; } };
+    const bookRestart = () => { bookStop(); bookStart(); };
+
+    if (prevBtn) prevBtn.addEventListener('click', () => bookGo(idx - 1, true));
+    if (nextBtn) nextBtn.addEventListener('click', () => bookGo(idx + 1, true));
+
+    // Pause on hover, resume on leave
+    bookCarousel.addEventListener('mouseenter', bookStop);
+    bookCarousel.addEventListener('mouseleave', bookStart);
+
+    // Touch swipe support for mobile
+    let bookTouchX = 0;
+    bookCarousel.addEventListener('touchstart', (e) => { bookTouchX = e.changedTouches[0].screenX; }, { passive: true });
+    bookCarousel.addEventListener('touchend', (e) => {
+      const dx = e.changedTouches[0].screenX - bookTouchX;
+      if (Math.abs(dx) > 50) bookGo(idx + (dx < 0 ? 1 : -1), true);
+    }, { passive: true });
+
+    // Respect reduced motion - no auto-cycle but manual controls still work
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    bookUpdate();
+    if (!reducedMotion) bookStart();
+  }
+
   /* ---------- FAQ accordions ---------- */
   document.querySelectorAll('.faq-item').forEach(item => {
     const q = item.querySelector('.faq-q');
