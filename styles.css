@@ -2332,6 +2332,30 @@ html.js .reveal-right.in { opacity: 1; transform: none; }
 }
 .offer-card:hover .offer-card-visual img { transform: translateY(-4px) scale(1.02); }
 
+/* Cohort card - landscape photo treatment (group of leaders),
+   not a product mockup. Fill the visual area edge-to-edge, no glow,
+   add a subtle dark gradient floor for legibility against any photo. */
+.offer-card-cohort .offer-card-visual {
+  align-items: stretch;
+  padding: 0;
+  overflow: hidden;
+  border-radius: 10px;
+}
+.offer-card-cohort .offer-card-visual::before {
+  inset: 0;
+  background: linear-gradient(180deg, transparent 0%, transparent 55%, rgba(0,0,0,0.55) 100%);
+  filter: none;
+  border-radius: 10px;
+  z-index: 1;
+}
+.offer-card-cohort .offer-card-visual img {
+  object-fit: cover;
+  object-position: center 35%;
+  filter: none;
+  border-radius: 10px;
+}
+.offer-card-cohort:hover .offer-card-visual img { transform: scale(1.03); }
+
 .offer-card-meta {
   display: flex;
   align-items: center;
