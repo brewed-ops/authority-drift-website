@@ -3344,68 +3344,50 @@ html.js .reveal-right.in { opacity: 1; transform: none; }
   margin: 0;
 }
 
-/* Pillars v6 - typographic-only. No compass, no graphic, no ornament.
-   Pure editorial restraint. The 3 concepts are the brand - they don't
-   need a logo over them. Each thread gets: an italic serif name, a
-   short gold hairline beneath, then the description.
-   Reads like a Financial Times feature spread. */
+/* Pillars v7 - true minimalist. Sans-serif title, serif body, no ornament.
+   The Apple/Stripe pattern: clean sans for the headline thing, serif for
+   the elaboration. Left-aligned within each column for editorial calm. */
 .reset-triad {
   margin: 0 auto clamp(80px, 9vw, 120px);
   max-width: 1180px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: clamp(40px, 4.5vw, 64px);
-}
-/* Small italic overline as section sub-eyebrow */
-.reset-triad-overline {
-  font-family: var(--ff-serif);
-  font-style: italic;
-  font-size: clamp(1rem, 1.15vw, 1.15rem);
-  color: var(--gold);
-  opacity: 0.85;
-  letter-spacing: 0.04em;
 }
 .reset-triad-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: clamp(40px, 5vw, 80px);
+  gap: clamp(48px, 6vw, 96px);
   width: 100%;
-  max-width: 1080px;
 }
 .reset-thread {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  text-align: center;
-  gap: clamp(18px, 2vw, 24px);
-  padding: clamp(8px, 1vw, 16px) 0;
+  text-align: left;
+  gap: clamp(14px, 1.5vw, 20px);
 }
-.reset-thread-title {
-  font-family: var(--ff-serif);
-  font-style: italic;
+/* Small gold number tag - the only accent */
+.reset-thread-num {
+  font-family: var(--ff-sans);
+  font-size: clamp(11px, 1vw, 13px);
   font-weight: 500;
-  font-size: clamp(1.65rem, 2.6vw, 2.3rem);
+  letter-spacing: 0.18em;
+  color: var(--gold);
+  opacity: 0.7;
+}
+/* Title in clean SANS-SERIF (Inter). No italic, no caps. Just clarity. */
+.reset-thread-title {
+  font-family: var(--ff-sans);
+  font-weight: 500;
+  font-size: clamp(1.35rem, 1.8vw, 1.6rem);
   letter-spacing: -0.012em;
   color: var(--warm-white);
-  line-height: 1.15;
+  line-height: 1.2;
   margin: 0;
 }
-/* Tiny gold hairline beneath each name - the only ornament */
-.reset-thread-rule {
-  display: block;
-  width: 40px;
-  height: 1px;
-  background: linear-gradient(90deg,
-    transparent 0%, var(--gold) 50%, transparent 100%);
-  opacity: 0.75;
-}
+/* Body kept as serif (Garamond) for warmth + reading rhythm */
 .reset-thread-body {
   font-family: var(--ff-serif);
   font-size: clamp(1.05rem, 1.2vw, 1.18rem);
   line-height: 1.6;
   color: var(--text-muted);
-  max-width: 32ch;
   margin: 0;
 }
 
@@ -3532,8 +3514,8 @@ html.js .reveal-right.in { opacity: 1; transform: none; }
   .section-reset { padding: clamp(64px, 12vw, 96px) 0; }
   .reset-head h2 { font-size: clamp(2rem, 7vw, 2.4rem); }
   .reset-lede { font-size: 1.1rem; }
-  .reset-triad-grid { gap: 36px; }
-  .reset-thread-title { font-size: 1.5rem; }
+  .reset-triad-grid { gap: 36px; grid-template-columns: 1fr; max-width: 460px; margin: 0 auto; }
+  .reset-thread-title { font-size: 1.3rem; }
   .reset-thread-body { font-size: 1.02rem; }
   .reset-rooms { grid-template-columns: 1fr; }
   .reset-room { text-align: left; padding: 24px 22px; }
