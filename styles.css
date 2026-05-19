@@ -3294,19 +3294,6 @@ html.js .reveal-right.in { opacity: 1; transform: none; }
   position: relative;
   padding: clamp(96px, 12vw, 168px) 0;
   background-color: #0A0A0A;
-  /* Brandon's book-pattern grid as atmospheric backdrop.
-     Heavily desaturated, dark-overlaid, blurred slightly so it reads
-     as texture not content. The dark gradient overlay keeps text legible. */
-  background-image:
-    linear-gradient(180deg,
-      rgba(10,10,10,0.92) 0%,
-      rgba(10,10,10,0.82) 50%,
-      rgba(10,10,10,0.92) 100%),
-    url('assets/book-pattern-bg.webp');
-  background-size: cover, cover;
-  background-position: center center, center center;
-  background-repeat: no-repeat, no-repeat;
-  background-attachment: scroll, scroll;
   overflow: hidden;
   isolation: isolate;
   border-top: 1px solid var(--border-gold);
@@ -3319,19 +3306,19 @@ html.js .reveal-right.in { opacity: 1; transform: none; }
     radial-gradient(40% 60% at 12% 50%, rgba(201,168,76,0.12), transparent 70%);
   z-index: -1;
 }
-/* Layer the book pattern with reduced opacity + filters so it integrates
-   with the dark/gold theme. Done via a dedicated ::after layer so we can
-   precisely control blend mode without affecting the gradient overlay. */
+/* Book-pattern texture - HEAVILY blurred, desaturated, and dimmed so it
+   reads as atmospheric depth, not legible content. Blur kills the
+   recognizable book covers; opacity + saturation keep it abstract. */
 .final-cta::after {
   content: '';
   position: absolute;
-  inset: 0;
+  inset: -40px;  /* slight overscan so blur edges don't show */
   background-image: url('assets/book-pattern-bg.webp');
-  background-size: cover;
+  background-size: 120% auto;  /* zoom in so fewer covers visible */
   background-position: center center;
   background-repeat: no-repeat;
-  opacity: 0.12;
-  filter: saturate(0.45) brightness(0.7) contrast(1.1);
+  opacity: 0.06;
+  filter: saturate(0) brightness(0.6) contrast(1.1) blur(14px);
   mix-blend-mode: luminosity;
   pointer-events: none;
   z-index: -2;
