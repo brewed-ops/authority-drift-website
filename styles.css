@@ -2082,7 +2082,8 @@ html.js .reveal-right.in { opacity: 1; transform: none; }
 /* ============ INSIDE THE BOOK ============ */
 .section-inside {
   background: rgba(19,19,19,0.12);
-  border-top: 1px solid var(--border);
+  /* border-top removed - sat right under the marquee's bottom border
+     creating a doubled-line look. */
   border-bottom: 1px solid var(--border);
   overflow: hidden;
 }
@@ -4474,16 +4475,43 @@ html.js .reveal-right.in { opacity: 1; transform: none; }
    ============================================================ */
 .section-press {
   padding: clamp(80px, 11vw, 160px) 0;
-  background:
-    radial-gradient(60% 50% at 50% 0%, rgba(201,168,76,0.05), transparent 75%);
+  /* removed gold radial wash - section now inherits the body bg cleanly */
 }
 .press-strip {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: clamp(56px, 7vw, 96px);
+  gap: clamp(36px, 4.5vw, 60px);
   max-width: 1240px;
   margin: 0 auto;
+}
+/* Label above the marquee - "Featured in" with thin rules each side.
+   Subtle, narrow, eyebrow style. */
+.press-label {
+  display: inline-flex;
+  align-items: center;
+  gap: clamp(14px, 1.6vw, 22px);
+  width: auto;
+}
+.press-label-rule {
+  width: clamp(36px, 5vw, 64px);
+  height: 1px;
+  background: linear-gradient(90deg, transparent 0%, var(--gold-dim) 50%, transparent 100%);
+}
+.press-label-text {
+  font-family: var(--ff-serif);
+  font-style: italic;
+  font-size: clamp(0.95rem, 1.1vw, 1.1rem);
+  letter-spacing: 0.04em;
+  color: var(--gold);
+  opacity: 0.85;
+  line-height: 1;
+  flex-shrink: 0;
+}
+@media (max-width: 720px) {
+  .press-label { gap: 12px; }
+  .press-label-rule { width: 28px; }
+  .press-label-text { font-size: 0.92rem; }
 }
 .press-head {
   display: flex;
@@ -4506,69 +4534,145 @@ html.js .reveal-right.in { opacity: 1; transform: none; }
   flex-shrink: 0;
 }
 
-.press-grid {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  width: 100%;
+/* ===== Single-row editorial press marquee =====
+   One line, slow elegant scroll, hairline gold pipe separator.
+   Typography is REFINED: italic serif tags on either side of a serif
+   name (NOT display caps - softer for editorial flow). Hairline pipe
+   separator instead of geometric diamond reads as fine print, not
+   ticker-tape. Edge mask dissolves items in and out at the sides. */
+.press-marquee {
+  width: 100vw;
+  margin-left: calc(50% - 50vw);  /* break out of container, full-bleed */
+  position: relative;
+  overflow: hidden;
   border-top: 1px solid var(--border-gold);
   border-bottom: 1px solid var(--border-gold);
+  -webkit-mask-image: linear-gradient(90deg,
+    transparent 0%, #000 12%, #000 88%, transparent 100%);
+          mask-image: linear-gradient(90deg,
+    transparent 0%, #000 12%, #000 88%, transparent 100%);
 }
-.press-item {
-  position: relative;
+.press-mq-row {
+  width: 100%;
+  overflow: hidden;
+}
+.press-mq-track {
   display: flex;
+  align-items: center;
+  gap: 0;
+  width: max-content;
+  will-change: transform;
+  animation: pressMarquee 55s linear infinite;
+}
+
+@keyframes pressMarquee {
+  from { transform: translate3d(0, 0, 0); }
+  to   { transform: translate3d(-50%, 0, 0); }
+}
+
+/* Pause on hover so users can read */
+.press-marquee:hover .press-mq-track { animation-play-state: paused; }
+
+@media (prefers-reduced-motion: reduce) {
+  .press-mq-track { animation: none; }
+}
+
+/* Items now stack VERTICALLY - tag (top), name (middle), meta (bottom).
+   Centered text, generous spacing between items horizontally. */
+.press-mq-item {
+  display: inline-flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
-  gap: clamp(14px, 1.4vw, 20px);
-  padding: clamp(56px, 6vw, 88px) clamp(32px, 4vw, 56px);
+  gap: clamp(8px, 1vw, 14px);
+  padding: clamp(40px, 5vw, 64px) clamp(32px, 3.5vw, 52px);
+  white-space: nowrap;
+  flex-shrink: 0;
 }
-/* vertical rule between left and right column */
-.press-item:nth-child(odd) { border-right: 1px solid var(--border-gold); }
-/* horizontal rule between top and bottom row */
-.press-item:nth-child(-n+2) { border-bottom: 1px solid var(--border-gold); }
-
-.press-kind {
-  font-family: var(--ff-serif);
-  font-style: italic;
-  font-size: clamp(1rem, 1.25vw, 1.18rem);
-  letter-spacing: 0.01em;
+/* TAG - top line. Display caps, brand eyebrow treatment. */
+.press-mq-tag {
+  font-family: var(--ff-display);
+  font-style: normal;
+  font-size: clamp(10px, 1vw, 12px);
+  letter-spacing: 0.36em;
+  text-transform: uppercase;
   color: var(--gold);
   line-height: 1;
+  flex-shrink: 0;
 }
-.press-name {
+/* NAME - middle line, the focal element. Display caps, larger. */
+.press-mq-name {
   font-family: var(--ff-display);
-  font-size: clamp(1.6rem, 2.6vw, 2.4rem);
-  letter-spacing: 0.12em;
+  font-style: normal;
+  font-weight: 400;
+  font-size: clamp(1.6rem, 2.8vw, 2.5rem);
+  letter-spacing: 0.06em;
   text-transform: uppercase;
   color: var(--warm-white);
-  line-height: 1.05;
-  font-weight: 400;
-  margin: 4px 0 2px;
+  line-height: 1;
+  flex-shrink: 0;
 }
-.press-meta {
+/* META - bottom line, italic serif quiet caption */
+.press-mq-meta {
   font-family: var(--ff-serif);
-  font-size: clamp(1rem, 1.15vw, 1.12rem);
-  letter-spacing: 0.01em;
+  font-style: italic;
+  font-size: clamp(0.95rem, 1.15vw, 1.12rem);
   color: var(--text-muted);
-  line-height: 1.4;
+  line-height: 1.2;
+  flex-shrink: 0;
+}
+/* SEPARATOR - replaced gradient pipe with a single solid gold dot.
+   Clean, unmistakable, no gradient, scales naturally. */
+.press-mq-sep {
+  display: inline-block;
+  flex-shrink: 0;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--gold);
+  opacity: 0.7;
+  margin: 0 clamp(36px, 4vw, 56px);
+  vertical-align: middle;
+  align-self: center;
 }
 
 @media (max-width: 720px) {
-  .section-press { padding: clamp(64px, 12vw, 96px) 0; }
-  .press-head { gap: 14px; }
-  .press-eyebrow { font-size: 13px; letter-spacing: 0.36em; }
-  .press-grid { grid-template-columns: 1fr; }
-  .press-item {
-    border-right: none !important;
-    border-bottom: 1px solid var(--border-gold);
-    padding: 40px 24px;
+  .section-press { padding: clamp(40px, 9vw, 64px) 0; }
+  .press-strip { gap: 26px; }
+  .press-mq-track { animation-duration: 38s; }
+  .press-mq-item {
+    padding: 30px 14px;
+    gap: 8px;
   }
-  .press-item:last-child { border-bottom: none; }
-  .press-name { font-size: 1.5rem; }
-  .press-meta { font-size: 1rem; }
+  .press-mq-tag {
+    font-size: 9.5px;
+    letter-spacing: 0.32em;
+  }
+  .press-mq-name { font-size: 1.3rem; letter-spacing: 0.05em; }
+  .press-mq-meta { font-size: 0.85rem; }
+  .press-mq-sep { margin: 0 18px; width: 3px; height: 3px; }
+  .press-marquee {
+    -webkit-mask-image: linear-gradient(90deg,
+      transparent 0%, #000 7%, #000 93%, transparent 100%);
+            mask-image: linear-gradient(90deg,
+      transparent 0%, #000 7%, #000 93%, transparent 100%);
+  }
+}
+
+/* Very narrow phones - keep items tight + readable */
+@media (max-width: 420px) {
+  .press-mq-item {
+    padding: 26px 10px;
+    gap: 7px;
+  }
+  .press-mq-tag { font-size: 9px; letter-spacing: 0.28em; }
+  .press-mq-name { font-size: 1.15rem; }
+  .press-mq-meta { font-size: 0.8rem; }
+  .press-mq-sep { margin: 0 14px; }
+  .press-mq-track { animation-duration: 30s; }
+  .press-label { gap: 10px; }
+  .press-label-rule { width: 22px; }
+  .press-label-text { font-size: 0.88rem; }
 }
 
 /* ============================================================
