@@ -3344,9 +3344,9 @@ html.js .reveal-right.in { opacity: 1; transform: none; }
   margin: 0;
 }
 
-/* Pillars v8 - centered minimalist. Sans-serif title, serif body, no
-   ornament. Each thread block centered within its column for balanced
-   editorial composition (executive-deck pattern). */
+/* Pillars v9 - premium centered cards. Each thread is a refined card:
+   subtle dark gradient bg, hairline gold border, generous padding,
+   gold top accent rule. Hover lifts the card and brightens the border. */
 .reset-triad {
   margin: 0 auto clamp(80px, 9vw, 120px);
   max-width: 1180px;
@@ -3354,28 +3354,59 @@ html.js .reveal-right.in { opacity: 1; transform: none; }
 .reset-triad-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: clamp(48px, 6vw, 96px);
+  gap: clamp(24px, 2.5vw, 36px);
   width: 100%;
 }
 .reset-thread {
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
-  gap: clamp(14px, 1.5vw, 20px);
-  max-width: 320px;
-  margin: 0 auto;
+  gap: clamp(16px, 1.6vw, 22px);
+  padding: clamp(44px, 4.5vw, 64px) clamp(28px, 3vw, 40px);
+  background: linear-gradient(180deg,
+    rgba(20, 19, 15, 0.55) 0%,
+    rgba(12, 12, 12, 0.35) 100%);
+  border: 1px solid rgba(201, 168, 76, 0.16);
+  transition: transform 0.5s var(--ease-out),
+              border-color 0.4s var(--ease-out),
+              background 0.4s var(--ease-out),
+              box-shadow 0.5s var(--ease-out);
+  overflow: hidden;
+  isolation: isolate;
 }
-/* Small gold number tag - the only accent */
+/* Subtle top gold accent rule - the brand mark on each card */
+.reset-thread::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 22%;
+  right: 22%;
+  height: 1px;
+  background: linear-gradient(90deg,
+    transparent 0%, rgba(201, 168, 76, 0.55) 50%, transparent 100%);
+}
+/* Hover: lift + brighter border + soft gold glow */
+.reset-thread:hover {
+  transform: translateY(-4px);
+  border-color: rgba(201, 168, 76, 0.35);
+  background: linear-gradient(180deg,
+    rgba(26, 24, 18, 0.65) 0%,
+    rgba(14, 14, 14, 0.45) 100%);
+  box-shadow: 0 16px 40px -16px rgba(201, 168, 76, 0.12);
+}
+
+/* Number tag - sans-serif gold caps */
 .reset-thread-num {
   font-family: var(--ff-sans);
   font-size: clamp(11px, 1vw, 13px);
   font-weight: 500;
   letter-spacing: 0.18em;
   color: var(--gold);
-  opacity: 0.7;
+  opacity: 0.8;
 }
-/* Title in clean SANS-SERIF (Inter). No italic, no caps. Just clarity. */
+/* Title - clean sans-serif (Inter) */
 .reset-thread-title {
   font-family: var(--ff-sans);
   font-weight: 500;
@@ -3385,13 +3416,14 @@ html.js .reveal-right.in { opacity: 1; transform: none; }
   line-height: 1.2;
   margin: 0;
 }
-/* Body kept as serif (Garamond) for warmth + reading rhythm */
+/* Body - serif (Garamond) for warmth */
 .reset-thread-body {
   font-family: var(--ff-serif);
   font-size: clamp(1.05rem, 1.2vw, 1.18rem);
   line-height: 1.6;
   color: var(--text-muted);
   margin: 0;
+  max-width: 32ch;
 }
 
 /* Rooms block - 6 mini-cards in 3x2 grid */
