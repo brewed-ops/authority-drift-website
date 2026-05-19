@@ -126,8 +126,8 @@ h3 { font-size: clamp(1.25rem, 1.9vw, 1.55rem); letter-spacing: -0.008em; }
 
 .eyebrow {
   font-family: var(--ff-display);
-  font-size: clamp(11px, 1.05vw, 13px);
-  letter-spacing: 0.34em;
+  font-size: clamp(14px, 1.3vw, 17px);
+  letter-spacing: 0.32em;
   text-transform: uppercase;
   color: var(--gold);
   font-weight: 400;
@@ -2124,18 +2124,124 @@ html.js .reveal-right.in { opacity: 1; transform: none; }
 
 /* ============ OFFERS - 4-CARD GRID (Book / Course / Community / Cohort) ============ */
 .offers-cards {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 20px;
-  max-width: 1320px;
+  display: flex;
+  flex-direction: column;
+  gap: clamp(32px, 4vw, 56px);
+  max-width: 1280px;
   margin: 0 auto;
-  align-items: stretch;
 }
-@media (max-width: 1100px) {
-  .offers-cards { grid-template-columns: repeat(2, 1fr); }
+
+/* ============ OFFER CARD - ROW LAYOUT (4 stacked rows) ============
+   Each card is a wide horizontal row at desktop: image on one side,
+   content on the other. Image side alternates per row for editorial
+   rhythm. Stacks vertically below 880px.
+================================================================== */
+@media (min-width: 881px) {
+  .offer-card {
+    display: grid !important;
+    grid-template-areas:
+      "visual meta"
+      "visual title"
+      "visual lead"
+      "visual incl"
+      "visual btn";
+    grid-template-columns: minmax(320px, 1fr) 1.35fr;
+    grid-template-rows: auto auto auto 1fr auto;
+    column-gap: clamp(36px, 4vw, 72px);
+    row-gap: 14px;
+    align-items: start;
+    padding: clamp(40px, 4vw, 64px) !important;
+    padding-top: clamp(56px, 5vw, 72px) !important;
+  }
+  .offer-card:nth-child(even) {
+    grid-template-areas:
+      "meta visual"
+      "title visual"
+      "lead visual"
+      "incl visual"
+      "btn visual";
+    grid-template-columns: 1.35fr minmax(320px, 1fr);
+  }
+
+  .offer-card .offer-card-visual {
+    grid-area: visual;
+    height: 100%;
+    min-height: 340px;
+    margin: 0;
+  }
+  .offer-card .offer-card-meta { grid-area: meta; margin-bottom: 0; }
+  .offer-card .offer-card-title {
+    grid-area: title;
+    margin-bottom: 0;
+    min-height: 0;
+    font-size: clamp(1.6rem, 2.2vw, 2.2rem);
+  }
+  .offer-card .offer-card-lead {
+    grid-area: lead;
+    margin-bottom: 0;
+    min-height: 0;
+    font-size: clamp(1rem, 1.1vw, 1.08rem);
+  }
+  .offer-card .offer-card-incl {
+    grid-area: incl;
+    margin: 8px 0 0;
+    padding: 18px 0 0;
+    border-top: 1px solid rgba(201, 168, 76, 0.18);
+    flex: none;
+    align-self: start;
+  }
+  /* Two-column inclusion list at desktop - reads better in wide row */
+  .offer-card .offer-card-incl {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 24px;
+    row-gap: 10px;
+  }
+  .offer-card .btn {
+    grid-area: btn;
+    align-self: end;
+    justify-self: start;
+    width: auto;
+    min-width: 200px;
+    margin-top: 12px;
+  }
+
+  /* Featured ornament looked best at top-center of narrow card.
+     In wide row, push it to the top-right corner as a decorative tag. */
+  .offer-card-featured .offer-card-ornament {
+    top: 22px;
+    left: auto;
+    right: 24px;
+    gap: 8px;
+  }
+  .offer-card-featured .offer-card-ornament .ornament-rule { flex-basis: 22px; }
+
+  /* Watermark Roman numeral: reposition for wide row */
+  .offer-card:nth-child(1)::after { top: 50%; right: -2%; transform: translateY(-50%); font-size: clamp(14rem, 22vw, 24rem); }
+  .offer-card:nth-child(2)::after { top: 50%; left: -2%; transform: translateY(-50%); font-size: clamp(14rem, 22vw, 24rem); }
+  .offer-card:nth-child(3)::after { top: 50%; right: -2%; transform: translateY(-50%); font-size: clamp(14rem, 22vw, 24rem); }
+  .offer-card:nth-child(4)::after { top: 50%; left: -2%; transform: translateY(-50%); font-size: clamp(14rem, 22vw, 24rem); }
+
+  /* Cohort card overrides for row layout - image fills its grid cell
+     no top-bleed needed (image already lives in its own column). */
+  .offer-card-cohort .offer-card-visual {
+    margin: 0;
+    height: 100%;
+    min-height: 380px;
+    border-radius: 12px;
+    overflow: hidden;
+  }
+  .offer-card-cohort .offer-card-visual::before {
+    border-radius: 12px;
+  }
+  .offer-card-cohort .offer-card-visual img {
+    border-radius: 12px;
+  }
 }
-@media (max-width: 640px) {
-  .offers-cards { grid-template-columns: 1fr; }
+
+/* Mobile / tablet: stack image on top of content inside each card */
+@media (max-width: 880px) {
+  .offers-cards { gap: 24px; }
 }
 
 /* ============ MASTERMIND BANNER (after the 4 offer cards) ============ */
@@ -3707,8 +3813,8 @@ html.js .reveal-right.in { opacity: 1; transform: none; }
 }
 .reset-rooms-eyebrow {
   font-family: var(--ff-display);
-  font-size: clamp(13px, 1.2vw, 15px);
-  letter-spacing: 0.32em;
+  font-size: clamp(15px, 1.35vw, 18px);
+  letter-spacing: 0.3em;
   text-transform: uppercase;
   color: var(--gold);
   display: inline-block;
