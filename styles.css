@@ -5585,17 +5585,17 @@ html.js .reveal-right.in { opacity: 1; transform: none; }
 .press-label-text {
   font-family: var(--ff-serif);
   font-style: italic;
-  font-size: clamp(0.95rem, 1.1vw, 1.1rem);
-  letter-spacing: 0.04em;
+  font-size: clamp(1.2rem, 1.5vw, 1.5rem);
+  letter-spacing: 0.03em;
   color: var(--gold);
-  opacity: 0.85;
+  opacity: 0.95;
   line-height: 1;
   flex-shrink: 0;
 }
 @media (max-width: 720px) {
   .press-label { gap: 12px; }
-  .press-label-rule { width: 28px; }
-  .press-label-text { font-size: 0.92rem; }
+  .press-label-rule { width: 32px; }
+  .press-label-text { font-size: 1.1rem; }
 }
 .press-head {
   display: flex;
@@ -5755,8 +5755,8 @@ html.js .reveal-right.in { opacity: 1; transform: none; }
   .press-mq-sep { margin: 0 14px; }
   .press-mq-track { animation-duration: 30s; }
   .press-label { gap: 10px; }
-  .press-label-rule { width: 22px; }
-  .press-label-text { font-size: 0.88rem; }
+  .press-label-rule { width: 24px; }
+  .press-label-text { font-size: 1.02rem; }
 }
 
 /* ============================================================
