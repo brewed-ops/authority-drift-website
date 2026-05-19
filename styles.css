@@ -3344,9 +3344,9 @@ html.js .reveal-right.in { opacity: 1; transform: none; }
   margin: 0;
 }
 
-/* Pillars v7 - true minimalist. Sans-serif title, serif body, no ornament.
-   The Apple/Stripe pattern: clean sans for the headline thing, serif for
-   the elaboration. Left-aligned within each column for editorial calm. */
+/* Pillars v8 - centered minimalist. Sans-serif title, serif body, no
+   ornament. Each thread block centered within its column for balanced
+   editorial composition (executive-deck pattern). */
 .reset-triad {
   margin: 0 auto clamp(80px, 9vw, 120px);
   max-width: 1180px;
@@ -3360,8 +3360,11 @@ html.js .reveal-right.in { opacity: 1; transform: none; }
 .reset-thread {
   display: flex;
   flex-direction: column;
-  text-align: left;
+  align-items: center;
+  text-align: center;
   gap: clamp(14px, 1.5vw, 20px);
+  max-width: 320px;
+  margin: 0 auto;
 }
 /* Small gold number tag - the only accent */
 .reset-thread-num {
