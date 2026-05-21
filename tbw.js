@@ -21,11 +21,11 @@
 
   // ---------- LENIS SMOOTH SCROLL ----------
   const lenis = new Lenis({
-    duration: 1.15,
+    duration: 0.7,
     easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
     smoothWheel: true,
-    wheelMultiplier: 1.0,
-    touchMultiplier: 1.2,
+    wheelMultiplier: 1.1,
+    touchMultiplier: 1.5,
   });
 
   // Hand Lenis the GSAP ticker (TBW non-negotiable pattern).
@@ -44,7 +44,7 @@
       e.preventDefault();
       const nav = document.getElementById('topnav');
       const offset = nav ? -(nav.offsetHeight + 16) : -16;
-      lenis.scrollTo(t, { offset, duration: 1.2 });
+      lenis.scrollTo(t, { offset, duration: 0.9 });
     });
   });
 
