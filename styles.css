@@ -5516,7 +5516,8 @@ html.js .reveal-right.in { opacity: 1; transform: none; }
   .hero-portrait img:not(.hero-portrait-compass) { animation: none; }
   .hero-portrait-compass, .about-portrait::after, .final-compass, .referral-card .compass { animation: none; }
   .marquee-track, .quotes-track, .hero-video, .hero-ocean .hero-vignette { animation: none; }
-  .hero-video { opacity: 1; transform: none; filter: saturate(0.95) contrast(1.04) brightness(0.92); }
+  .hero-video { display: none; }
+  .hero-photo { display: block; opacity: 1; filter: saturate(0.95) contrast(1.04) brightness(0.92); }
   .hero-ocean .hero-vignette { opacity: 1; }
 }
 
