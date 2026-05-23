@@ -333,8 +333,29 @@
   /* ---------- referral form: client-side submit handling ---------- */
   const refForm = document.getElementById('referralForm');
   if (refForm) {
+    // GHL inbound webhook: "01. Referrals From Website"
+    const REFERRAL_WEBHOOK = 'https://services.leadconnectorhq.com/hooks/oxe72L0Uva4DN1UM1qJx/webhook-trigger/4fced324-e420-4190-9ddb-265abc681cac';
     refForm.addEventListener('submit', (e) => {
       e.preventDefault();
+      const fullName = (document.getElementById('ref-name')?.value || '').trim();
+      const parts = fullName.split(/\s+/);
+      const isSponsor = new URLSearchParams(window.location.search).get('sponsor') === '1';
+      const payload = {
+        full_name: fullName,
+        first_name: parts.shift() || fullName,
+        last_name: parts.join(' '),
+        email: (document.getElementById('ref-email')?.value || '').trim(),
+        referred_by: (document.getElementById('ref-by')?.value || '').trim(),
+        message: (document.getElementById('ref-msg')?.value || '').trim(),
+        source: isSponsor ? 'Website - Sponsor a Friend' : 'Website - Referral',
+        page_url: window.location.href
+      };
+      // text/plain avoids a CORS preflight; GHL parses the JSON body regardless. Fire-and-forget.
+      fetch(REFERRAL_WEBHOOK, {
+        method: 'POST',
+        headers: { 'Content-Type': 'text/plain;charset=UTF-8' },
+        body: JSON.stringify(payload)
+      }).catch(() => {});
       // fire Meta Pixel Lead event
       if (typeof fbq === 'function') fbq('track', 'Lead', { content_name: 'Referral Submission' });
       const status = document.getElementById('referralStatus');
