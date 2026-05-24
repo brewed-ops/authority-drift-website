@@ -382,7 +382,6 @@
         first_name: firstName,
         last_name: lastName,
         email: val('email'),
-        phone: val('phone'),
         exploring: val('exploring'),
         investment_level: val('investment_level'),
         message: val('moment'),
