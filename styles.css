@@ -5927,6 +5927,10 @@ html.js .reveal-right.in { opacity: 1; transform: none; }
   .landing-form-row { grid-template-columns: 1fr; }
 }
 .landing-form label { display: flex; flex-direction: column; gap: 8px; }
+/* In two-column rows, anchor controls to the bottom of each cell so they stay
+   aligned even when one label wraps to two lines (e.g. "Investment level..."). */
+.landing-form-row input,
+.landing-form-row select { margin-top: auto; }
 .landing-form-label {
   font-family: var(--ff-display);
   font-size: 14px;
