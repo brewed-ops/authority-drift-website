@@ -4912,7 +4912,7 @@ html.js .reveal-right.in { opacity: 1; transform: none; }
 
 /* ============ REFERRAL PAGE (private invitation - textured, premium) ============ */
 .page-referral {
-  /* inherits site-background.png texture from body - no override */
+  /* inherits the body gradient backdrop - no override */
 }
 
 .referral-simple {
