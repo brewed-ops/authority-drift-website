@@ -164,14 +164,15 @@ html.js .reveal-right.in { opacity: 1; transform: none; }
   z-index: 50;
   padding: 22px 0;
   background: linear-gradient(180deg, rgba(11,11,11,0.78) 0%, rgba(11,11,11,0.40) 80%, rgba(11,11,11,0) 100%);
-  transition: padding 0.35s var(--ease-out), background 0.35s var(--ease-out), backdrop-filter 0.35s var(--ease-out), border-color 0.35s var(--ease-out);
+  transition: padding 0.35s var(--ease-out), background 0.35s var(--ease-out), border-color 0.35s var(--ease-out);
   border-bottom: 1px solid transparent;
 }
 .nav.scrolled {
   padding: 14px 0;
-  background: rgba(11,11,11,0.92);
-  backdrop-filter: blur(18px) saturate(140%);
-  -webkit-backdrop-filter: blur(18px) saturate(140%);
+  /* Solid 94% tint instead of a blur(18px) backdrop-filter: at this opacity the
+     frosted blur was barely visible but re-blurred the full-width scrolling
+     content every frame (a primary scroll-jank source). */
+  background: rgba(11,11,11,0.94);
   border-bottom-color: var(--border);
 }
 .nav-row {
@@ -2611,6 +2612,43 @@ html.js .reveal-right.in { opacity: 1; transform: none; }
   letter-spacing: 0.02em;
   margin: 4px 0 0;
   opacity: 0.85;
+}
+
+/* Moments marquee - auto-scrolling band of real event photos.
+   Animates transform only (GPU-composited, no scroll repaint). */
+.events-marquee {
+  margin-top: clamp(40px, 5vw, 64px);
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 7%, #000 93%, transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 7%, #000 93%, transparent);
+}
+.events-marquee-track {
+  display: flex;
+  gap: 14px;
+  width: max-content;
+  animation: events-scroll 110s linear infinite;
+  will-change: transform;
+}
+.events-marquee:hover .events-marquee-track { animation-play-state: paused; }
+.events-marquee-track img {
+  height: 210px;
+  width: auto;
+  flex: 0 0 auto;
+  object-fit: cover;
+  border-radius: 4px;
+  border: 1px solid rgba(201, 168, 76, 0.14);
+}
+@keyframes events-scroll {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+@media (max-width: 720px) {
+  .events-marquee-track img { height: 150px; }
+  .events-marquee-track { animation-duration: 80s; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .events-marquee-track { animation: none; }
+  .events-marquee { overflow-x: auto; -webkit-overflow-scrolling: touch; }
 }
 
 .mastermind-cta-row {
