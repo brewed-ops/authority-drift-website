@@ -375,12 +375,12 @@
     bookForm.addEventListener('submit', (e) => {
       e.preventDefault();
       const val = (n) => (bookForm.querySelector('[name="' + n + '"]')?.value || '').trim();
-      const fullName = val('full_name');
-      const parts = fullName.split(/\s+/);
+      const firstName = val('first_name');
+      const lastName = val('last_name');
       const payload = {
-        full_name: fullName,
-        first_name: parts.shift() || fullName,
-        last_name: parts.join(' '),
+        full_name: (firstName + ' ' + lastName).trim(),
+        first_name: firstName,
+        last_name: lastName,
         email: val('email'),
         phone: val('phone'),
         exploring: val('exploring'),

@@ -52,20 +52,27 @@
         <form id="bookCallForm" class="landing-form" method="POST">
           <div class="landing-form-row">
             <label>
-              <span class="landing-form-label">Full name</span>
-              <input type="text" name="full_name" required autocomplete="name" />
+              <span class="landing-form-label">First name</span>
+              <input type="text" name="first_name" required autocomplete="given-name" />
             </label>
             <label>
-              <span class="landing-form-label">Email</span>
-              <input type="email" name="email" required autocomplete="email" />
+              <span class="landing-form-label">Last name</span>
+              <input type="text" name="last_name" required autocomplete="family-name" />
             </label>
           </div>
 
           <div class="landing-form-row">
             <label>
+              <span class="landing-form-label">Email</span>
+              <input type="email" name="email" required autocomplete="email" />
+            </label>
+            <label>
               <span class="landing-form-label">Phone</span>
               <input type="tel" name="phone" autocomplete="tel" />
             </label>
+          </div>
+
+          <div class="landing-form-row">
             <label>
               <span class="landing-form-label">What are you exploring?</span>
               <select name="exploring" required>
@@ -76,20 +83,19 @@
                 <option>Other</option>
               </select>
             </label>
+            <label>
+              <span class="landing-form-label">Investment level you are open to</span>
+              <select name="investment_level" required>
+                <option value="">Choose one</option>
+                <option>Under $10,000</option>
+                <option>$10,000 - $25,000</option>
+                <option>$25,000 - $50,000</option>
+                <option>$50,000 - $150,000</option>
+                <option>$150,000+</option>
+                <option>Prefer to discuss on the call</option>
+              </select>
+            </label>
           </div>
-
-          <label>
-            <span class="landing-form-label">Investment level you are open to</span>
-            <select name="investment_level" required>
-              <option value="">Choose one</option>
-              <option>Under $10,000</option>
-              <option>$10,000 - $25,000</option>
-              <option>$25,000 - $50,000</option>
-              <option>$50,000 - $150,000</option>
-              <option>$150,000+</option>
-              <option>Prefer to discuss on the call</option>
-            </select>
-          </label>
 
           <label>
             <span class="landing-form-label">What is the moment you are in?</span>
