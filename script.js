@@ -330,6 +330,32 @@
     }
   }
 
+  /* ---------- shared: replace a form with a thank-you panel + auto-return countdown ---------- */
+  function showFormThankYou(form, message) {
+    if (!form) return;
+    const HOME = 'index.html';
+    let remaining = 10;
+    const panel = document.createElement('div');
+    panel.className = 'form-thankyou';
+    panel.setAttribute('role', 'status');
+    panel.setAttribute('aria-live', 'polite');
+    panel.innerHTML =
+      '<h3 class="form-thankyou-title">Thank you.</h3>' +
+      '<p class="form-thankyou-body"></p>' +
+      '<a href="' + HOME + '" class="btn btn-primary form-thankyou-btn">Return to the site</a>' +
+      '<p class="form-thankyou-count">Taking you back in <span class="form-thankyou-num">' + remaining + '</span> seconds.</p>';
+    panel.querySelector('.form-thankyou-body').textContent = message;
+    form.style.display = 'none';
+    form.parentNode.insertBefore(panel, form.nextSibling);
+    panel.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    const numEl = panel.querySelector('.form-thankyou-num');
+    const timer = setInterval(() => {
+      remaining -= 1;
+      if (numEl) numEl.textContent = remaining;
+      if (remaining <= 0) { clearInterval(timer); window.location.href = HOME; }
+    }, 1000);
+  }
+
   /* ---------- referral form: client-side submit handling ---------- */
   const refForm = document.getElementById('referralForm');
   if (refForm) {
@@ -358,12 +384,9 @@
       }).catch(() => {});
       // fire Meta Pixel Lead event
       if (typeof fbq === 'function') fbq('track', 'Lead', { content_name: 'Referral Submission' });
-      const status = document.getElementById('referralStatus');
-      if (status) {
-        status.style.display = 'block';
-        status.textContent = 'Thank you. We received it. Michael will be in touch personally.';
-      }
-      refForm.reset();
+      showFormThankYou(refForm, isSponsor
+        ? 'Your sponsorship note is in. Michael will reach out to you personally.'
+        : 'We received it. Michael will reach out to you personally.');
     });
   }
 
@@ -396,13 +419,7 @@
       }).catch(() => {});
       // fire Meta Pixel Lead event
       if (typeof fbq === 'function') fbq('track', 'Lead', { content_name: 'Book a Call Application' });
-      const status = document.getElementById('bookCallStatus');
-      if (status) {
-        status.style.display = 'block';
-        status.textContent = 'Thank you. Your application is in. Michael reviews every submission personally and will be in touch within two business days.';
-        status.scrollIntoView({ behavior: 'smooth', block: 'center' });
-      }
-      bookForm.reset();
+      showFormThankYou(bookForm, 'Your application is in. Michael reviews every submission personally and will be in touch within two business days.');
     });
   }
 
