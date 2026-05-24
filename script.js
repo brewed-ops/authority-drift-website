@@ -337,23 +337,23 @@
     const REFERRAL_WEBHOOK = 'https://services.leadconnectorhq.com/hooks/oxe72L0Uva4DN1UM1qJx/webhook-trigger/4fced324-e420-4190-9ddb-265abc681cac';
     refForm.addEventListener('submit', (e) => {
       e.preventDefault();
-      const fullName = (document.getElementById('ref-name')?.value || '').trim();
-      const parts = fullName.split(/\s+/);
+      const firstName = (document.getElementById('ref-first')?.value || '').trim();
+      const lastName = (document.getElementById('ref-last')?.value || '').trim();
       const isSponsor = new URLSearchParams(window.location.search).get('sponsor') === '1';
       const payload = {
-        full_name: fullName,
-        first_name: parts.shift() || fullName,
-        last_name: parts.join(' '),
+        full_name: (firstName + ' ' + lastName).trim(),
+        first_name: firstName,
+        last_name: lastName,
         email: (document.getElementById('ref-email')?.value || '').trim(),
         referred_by: (document.getElementById('ref-by')?.value || '').trim(),
         message: (document.getElementById('ref-msg')?.value || '').trim(),
         source: isSponsor ? 'Website - Sponsor a Friend' : 'Website - Referral',
         page_url: window.location.href
       };
-      // text/plain avoids a CORS preflight; GHL parses the JSON body regardless. Fire-and-forget.
+      // GHL inbound webhook needs application/json (it rejects text/plain bodies). Its CORS preflight is handled, so no hack needed. Fire-and-forget.
       fetch(REFERRAL_WEBHOOK, {
         method: 'POST',
-        headers: { 'Content-Type': 'text/plain;charset=UTF-8' },
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload)
       }).catch(() => {});
       // fire Meta Pixel Lead event
@@ -364,6 +364,46 @@
         status.textContent = 'Thank you. We received it. Michael will be in touch personally.';
       }
       refForm.reset();
+    });
+  }
+
+  /* ---------- book-call (application) form: submit to GHL cohort webhook ---------- */
+  const bookForm = document.getElementById('bookCallForm');
+  if (bookForm) {
+    // GHL inbound webhook: "Cohort Application / Book a Call"
+    const BOOKCALL_WEBHOOK = 'https://services.leadconnectorhq.com/hooks/oxe72L0Uva4DN1UM1qJx/webhook-trigger/ca6dd07f-acd4-4b78-80c6-162472d4023f';
+    bookForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const val = (n) => (bookForm.querySelector('[name="' + n + '"]')?.value || '').trim();
+      const fullName = val('full_name');
+      const parts = fullName.split(/\s+/);
+      const payload = {
+        full_name: fullName,
+        first_name: parts.shift() || fullName,
+        last_name: parts.join(' '),
+        email: val('email'),
+        phone: val('phone'),
+        exploring: val('exploring'),
+        investment_level: val('investment_level'),
+        message: val('moment'),
+        source: 'Website - Book a Call',
+        page_url: window.location.href
+      };
+      // GHL inbound webhook needs application/json (it rejects text/plain bodies). Its CORS preflight is handled, so no hack needed. Fire-and-forget.
+      fetch(BOOKCALL_WEBHOOK, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      }).catch(() => {});
+      // fire Meta Pixel Lead event
+      if (typeof fbq === 'function') fbq('track', 'Lead', { content_name: 'Book a Call Application' });
+      const status = document.getElementById('bookCallStatus');
+      if (status) {
+        status.style.display = 'block';
+        status.textContent = 'Thank you. Your application is in. Michael reviews every submission personally and will be in touch within two business days.';
+        status.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }
+      bookForm.reset();
     });
   }
 

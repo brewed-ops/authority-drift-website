@@ -49,11 +49,7 @@
           A private session is scheduled after a brief review.
         </p>
 
-        <form class="landing-form" action="https://formsubmit.co/team@authoritydriftbook.com" method="POST">
-          <input type="hidden" name="_subject" value="Book a Call - The Authority Drift" />
-          <input type="hidden" name="_captcha" value="false" />
-          <input type="hidden" name="_next" value="https://authority-drift-website.vercel.app/book-call.html?sent=1" />
-
+        <form id="bookCallForm" class="landing-form" method="POST">
           <div class="landing-form-row">
             <label>
               <span class="landing-form-label">Full name</span>
@@ -102,6 +98,7 @@
 
           <button type="submit" class="btn btn-primary landing-submit">Submit application</button>
           <p class="landing-form-note">Michael reviews every submission personally. You'll hear back within two business days.</p>
+          <p id="bookCallStatus" class="referral-status" role="status" aria-live="polite"></p>
         </form>
       </div>
     </div>
@@ -114,5 +111,6 @@
   </div>
 </footer>
 
+<script defer src="script.js"></script>
 </body>
 </html>
