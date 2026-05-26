@@ -6034,7 +6034,7 @@ html.js .reveal-right.in { opacity: 1; transform: none; }
   border-color: var(--gold);
 }
 .landing-form textarea { resize: vertical; min-height: 120px; }
-.landing-submit { margin-top: 8px; align-self: flex-start; }
+.landing-submit { margin-top: 8px; align-self: center; }
 .landing-form-note {
   font-family: var(--ff-serif);
   font-style: italic;
