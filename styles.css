@@ -4272,11 +4272,11 @@ html.js .reveal-right.in { opacity: 1; transform: none; }
   .reset-triad-grid { gap: 36px; grid-template-columns: 1fr; max-width: 460px; margin: 0 auto; }
   .reset-thread-title { font-size: 1.3rem; }
   .reset-thread-body { font-size: 1.02rem; }
-  .reset-rooms { grid-template-columns: 1fr; }
-  .reset-room { text-align: left; padding: 14px 20px; gap: 3px; }
-  .reset-room-tag { margin-bottom: 2px; font-size: 12px; }
-  .reset-room-name { font-size: 1.2rem; }
-  .reset-room-desc { font-size: 0.98rem; line-height: 1.4; }
+  .reset-rooms { grid-template-columns: repeat(2, 1fr); }
+  .reset-room { text-align: left; padding: 16px 14px; gap: 3px; }
+  .reset-room-tag { margin-bottom: 3px; font-size: 10px; }
+  .reset-room-name { font-size: 1.02rem; line-height: 1.2; }
+  .reset-room-desc { font-size: 0.82rem; line-height: 1.35; }
   .reset-rooms-head::before, .reset-rooms-head::after { width: 28px; margin: 0 10px; }
   .reset-cta-row { flex-direction: column; gap: 12px; }
   .reset-cta { text-align: center; }
