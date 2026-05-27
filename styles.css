@@ -2809,7 +2809,7 @@ html.js .reveal-right.in { opacity: 1; transform: none; }
 }
 .offer-card-cohort .offer-card-visual img {
   border-radius: 22px 0 0 0;
-  transform: scale(1.18);
+  transform: scale(1);
   transform-origin: center;
 }
 .offer-card-cohort .offer-card-visual .application-tag {
