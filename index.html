@@ -228,11 +228,14 @@
   <!-- ============ HERO (centered, photo ocean background) ============ -->
   <section class="hero">
     <div class="hero-ocean" aria-hidden="true">
+      <!-- Always-rendered base layer: shows whenever the video can't autoplay
+           (incognito, mobile, slow connection). MUST stay a sibling of the
+           video, never a child of it - an <img> inside <video> is no-video
+           fallback content that never renders on modern browsers. -->
+      <img src="assets/hero-ocean-night.webp" alt="" class="hero-photo" width="1920" height="1080" decoding="async" fetchpriority="high" />
       <video class="hero-video" autoplay muted loop playsinline preload="metadata"
-             poster="assets/hero-ocean-night.webp"
              width="1920" height="1080">
         <source src="assets/hero-ocean-night.mp4" type="video/mp4" />
-        <img src="assets/hero-ocean-night.webp" alt="" class="hero-photo" width="1920" height="1080" decoding="async" fetchpriority="high" />
       </video>
       <div class="hero-vignette"></div>
     </div>
@@ -804,7 +807,7 @@
           <div class="mastermind-feature-body">
             <span class="mastermind-feature-tag">On the Water</span>
             <h3 class="mastermind-feature-title">Sport Fishing in the Bahamas</h3>
-            <p class="mastermind-feature-loc">Three days</p>
+            <p class="mastermind-feature-loc">Three days &middot; Live aboard</p>
           </div>
         </article>
 
@@ -1147,7 +1150,7 @@
         <div class="final-grid">
           <div class="final-left">
             <span class="final-mark" aria-hidden="true">&mdash;&#8202;Begin</span>
-            <h2 class="final-headline">Same person.<br/>Every room.</h2>
+            <h2 class="final-headline">Michael is the same person<br/>in every room.</h2>
           </div>
           <div class="final-right">
             <p class="final-body">A book on identity-based leadership for those winning externally and quietly negotiating internally. Start here.</p>

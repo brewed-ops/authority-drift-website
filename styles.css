@@ -807,7 +807,7 @@ html.js .reveal-right.in { opacity: 1; transform: none; }
   object-fit: cover;
   object-position: center center;
   animation: heroKenBurns 22s ease-in-out infinite alternate;
-  filter: saturate(0.88) contrast(1.08) brightness(0.78);
+  filter: saturate(0.95) contrast(1.06) brightness(1);
 }
 @keyframes heroKenBurns {
   from { transform: scale(1.02) translate3d(0, 0, 0); }
@@ -5236,7 +5236,7 @@ html.js .reveal-right.in { opacity: 1; transform: none; }
 @media (max-width: 720px) {
   /* hero video: skip the 3.2MB MP4 on cellular - poster JPG covers it */
   .hero-video { display: none; }
-  .hero-photo { display: block; opacity: 0.75; }
+  .hero-photo { display: block; opacity: 1; }
 
   /* nav: tighten + ensure touch targets >= 44px */
   .brand-line-1 { font-size: 13px; }
