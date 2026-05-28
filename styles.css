@@ -2631,7 +2631,8 @@ html.js .reveal-right.in { opacity: 1; transform: none; }
   will-change: transform;
 }
 .events-marquee:hover .events-marquee-track { animation-play-state: paused; }
-.events-marquee-track img {
+.events-marquee-track img,
+.events-marquee-track video {
   height: 210px;
   width: auto;
   flex: 0 0 auto;
@@ -2644,7 +2645,8 @@ html.js .reveal-right.in { opacity: 1; transform: none; }
   to   { transform: translateX(-50%); }
 }
 @media (max-width: 720px) {
-  .events-marquee-track img { height: 150px; }
+  .events-marquee-track img,
+  .events-marquee-track video { height: 150px; }
   .events-marquee-track { animation-duration: 80s; }
 }
 @media (prefers-reduced-motion: reduce) {
