@@ -6068,3 +6068,32 @@ html.js .reveal-right.in { opacity: 1; transform: none; }
   padding: 24px 0;
   margin: 0;
 }
+
+/* ============================================================
+   Tablet / iPad optimizations (added 2026-05-28)
+   Mid-range viewports (721-1024px) sat between the mobile column
+   rules and the desktop row layout, so CTAs stayed cramped in a
+   row. Stack + center the action containers across tablets too.
+   ============================================================ */
+@media (min-width: 721px) and (max-width: 1024px) {
+  .hero-actions {
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+  }
+  .referrals-actions {
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+  }
+  .invitation-actions {
+    justify-content: center;
+  }
+  /* keep tap target generous on tablets */
+  .hero-actions .btn,
+  .referrals-actions .btn,
+  .invitation-actions .btn,
+  .speaking-cta .btn {
+    min-height: 48px;
+  }
+}
