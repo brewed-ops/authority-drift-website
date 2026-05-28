@@ -22,6 +22,17 @@ This site is currently auto-deployed to Vercel from `main` in this repo. Per the
 
 Whatever host you move to, please preserve the items below or things break silently.
 
+### State at handoff (May 29, 2026)
+
+Everything in this repo is production-ready. The deployment sequence is gated on Percepture's DNS work:
+
+1. **Now:** site is live + correct at `authority-drift-website.vercel.app`. All forms wired to GHL. All A2P-compliance pieces in place on `text-updates.html` (consent UI + STOP/HELP + Privacy link + frequency + data-rates).
+2. **Percepture takes over hosting** → moves the repo content to your hosting platform of choice, cuts GoDaddy DNS to point `authoritydrift.com` + `www.authoritydrift.com` at it. Migration checklist below.
+3. **After DNS resolves** to the real site at `authoritydrift.com`, Mike clicks "Start Now" on the red A2P banner in GHL and submits the Twilio TCR brand + campaign. The campaign URL is `https://authoritydrift.com/text-updates`.
+4. **TCR approves** (typical 1-3 weeks) → Kenneth toggles the GHL workflow `03. SMS Opt-Ins From Website` from Draft to Published, welcome SMS goes live.
+
+**Do not change `text-updates.html`, the `CONSENT_TEXT` constant in `script.js`, or `privacy.html` (Section 15) once submission goes in.** Any change after TCR approval requires resubmission.
+
 ### Migration checklist
 
 - [ ] Replicate the routing rules in `vercel.json` (clean URLs - `/privacy` -> `privacy.html`, etc.).
@@ -29,6 +40,8 @@ Whatever host you move to, please preserve the items below or things break silen
 - [ ] Keep both form `POST` URLs intact (see *Forms + integrations* below). Don't proxy or rewrite them.
 - [ ] Keep the Meta Pixel `<script>` + `<noscript>` blocks in the `<head>` of every HTML page. Pixel ID is `3864806837147722`.
 - [ ] After DNS cutover, send a test submission through each form and verify the contact lands in the **Authority Drift** GHL location.
+- [ ] Confirm `https://authoritydrift.com/text-updates` resolves to the real opt-in page (not a landing/parking redirect). This URL is what Twilio TCR reviewers will scrape - it MUST show the actual form with the consent checkbox, STOP/HELP/Privacy text, on a publicly reachable URL.
+- [ ] Confirm `https://authoritydrift.com/privacy.html` resolves and is reachable from `/text-updates` (the Privacy Policy link in the consent label - same domain, no login wall, no off-site redirect).
 
 ---
 
@@ -77,7 +90,7 @@ Both forms POST `application/json` directly to GHL. The GHL inbound webhook **re
 |---|---|---|
 | Refer a friend | `referral.html` | `https://services.leadconnectorhq.com/hooks/oxe72L0Uva4DN1UM1qJx/webhook-trigger/4fced324-e420-4190-9ddb-265abc681cac` |
 | Book a call / Application | `book-call.html` | `https://services.leadconnectorhq.com/hooks/oxe72L0Uva4DN1UM1qJx/webhook-trigger/ca6dd07f-acd4-4b78-80c6-162472d4023f` |
-| Text Updates (SMS opt-in) | `text-updates.html` | **(currently sharing the Referrals webhook URL while a dedicated `01. SMS Opt-Ins From Website` webhook is being created in GHL.)** Differentiated by the `source: "Website - Text Updates Opt-In"` field on the payload. Swap URL in `script.js` once the dedicated webhook exists. |
+| Text Updates (SMS opt-in) | `text-updates.html` | `https://services.leadconnectorhq.com/hooks/oxe72L0Uva4DN1UM1qJx/webhook-trigger/bfe3334b-154e-4b8f-abd1-0cc5e1dd6ed3` (dedicated **`03. SMS Opt-Ins From Website`** workflow) |
 
 Field names in the POST body are mapped 1:1 to GHL contact fields. Don't rename them without coordinating with Kenneth - downstream GHL workflows (notifications, branching by interest type, etc.) read those exact keys.
 
