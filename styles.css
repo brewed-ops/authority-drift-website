@@ -6075,7 +6075,7 @@ html.js .reveal-right.in { opacity: 1; transform: none; }
    rules and the desktop row layout, so CTAs stayed cramped in a
    row. Stack + center the action containers across tablets too.
    ============================================================ */
-@media (min-width: 721px) and (max-width: 1024px) {
+@media (min-width: 721px) and (max-width: 1199px) {
   .hero-actions {
     flex-direction: column;
     align-items: center;
