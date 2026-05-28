@@ -423,4 +423,54 @@
     });
   }
 
+  /* ---------- text-updates (SMS opt-in) form: A2P 10DLC compliant ---------- */
+  const smsForm = document.getElementById('textUpdatesForm');
+  if (smsForm) {
+    // TODO: swap to dedicated "01. SMS Opt-Ins From Website" inbound webhook
+    // once Kenneth/Mike create it in GHL. For now we reuse the Referrals
+    // webhook URL so opt-ins still land in GHL; the `source` field below
+    // differentiates them downstream so the workflow can route them.
+    const SMS_OPTIN_WEBHOOK = 'https://services.leadconnectorhq.com/hooks/oxe72L0Uva4DN1UM1qJx/webhook-trigger/4fced324-e420-4190-9ddb-265abc681cac';
+    // EXACT consent text shown to the user on the form. Logged with each
+    // submission for A2P 10DLC audit purposes - Twilio TCR can require
+    // proof of what consent language was displayed at the moment of opt-in.
+    // If the consent text on text-updates.html changes, update this string.
+    const CONSENT_TEXT = 'I agree to receive recurring text messages from The Authority Drift at the mobile number provided. Message frequency varies. Msg & data rates may apply. Reply STOP to unsubscribe, HELP for help. See our Privacy Policy for details.';
+    smsForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const consentBox = document.getElementById('sms-consent');
+      // A2P: hard-fail if consent checkbox not checked. Required attribute
+      // already blocks form, but double-check defensively here too.
+      if (!consentBox || !consentBox.checked) {
+        const status = document.getElementById('textUpdatesStatus');
+        if (status) { status.textContent = 'Please check the consent box to opt in.'; status.style.color = '#C9A84C'; }
+        return;
+      }
+      const firstName = (document.getElementById('sms-first')?.value || '').trim();
+      const lastName = (document.getElementById('sms-last')?.value || '').trim();
+      const phoneRaw = (document.getElementById('sms-phone')?.value || '').trim();
+      const payload = {
+        full_name: (firstName + ' ' + lastName).trim(),
+        first_name: firstName,
+        last_name: lastName,
+        phone: phoneRaw,
+        sms_consent: true,
+        sms_consent_text: CONSENT_TEXT,
+        sms_consent_timestamp: new Date().toISOString(),
+        source: 'Website - Text Updates Opt-In',
+        page_url: window.location.href,
+        user_agent: navigator.userAgent
+      };
+      // GHL inbound webhook needs application/json. CORS preflight handled. Fire-and-forget.
+      fetch(SMS_OPTIN_WEBHOOK, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      }).catch(() => {});
+      // fire Meta Pixel Lead event (separate event_name for analytics)
+      if (typeof fbq === 'function') fbq('track', 'Lead', { content_name: 'SMS Opt-In' });
+      showFormThankYou(smsForm, 'You\'re in. Welcome aboard. You\'ll get a confirmation text shortly - reply STOP at any time to unsubscribe.');
+    });
+  }
+
 })();
