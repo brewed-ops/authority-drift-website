@@ -5251,7 +5251,7 @@ html.js .reveal-right.in { opacity: 1; transform: none; }
   .hero-headline { font-size: clamp(2.1rem, 9vw, 2.8rem); line-height: 1.08; }
   .hero-sub { font-size: clamp(0.98rem, 4vw, 1.15rem); }
   .hero-line { gap: 10px; flex-wrap: wrap; justify-content: center; font-size: 10px; letter-spacing: 0.18em; }
-  .hero-actions { flex-direction: column; gap: 12px; }
+  .hero-actions { flex-direction: column; gap: 12px; align-items: center; }
   .hero-actions .btn { min-height: 48px; }
 
   /* hero pull-quote (mobile final) */
@@ -5468,7 +5468,7 @@ html.js .reveal-right.in { opacity: 1; transform: none; }
   .invitation-sig { font-size: 0.9rem; }
 
   /* referrals card on home */
-  .referrals-actions { flex-direction: column; gap: 12px; }
+  .referrals-actions { flex-direction: column; gap: 12px; align-items: center; }
   .referrals-actions .btn { min-height: 48px; }
 
   /* final CTA mobile */
