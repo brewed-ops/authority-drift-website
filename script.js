@@ -426,11 +426,12 @@
   /* ---------- text-updates (SMS opt-in) form: A2P 10DLC compliant ---------- */
   const smsForm = document.getElementById('textUpdatesForm');
   if (smsForm) {
-    // TODO: swap to dedicated "01. SMS Opt-Ins From Website" inbound webhook
-    // once Kenneth/Mike create it in GHL. For now we reuse the Referrals
-    // webhook URL so opt-ins still land in GHL; the `source` field below
-    // differentiates them downstream so the workflow can route them.
-    const SMS_OPTIN_WEBHOOK = 'https://services.leadconnectorhq.com/hooks/oxe72L0Uva4DN1UM1qJx/webhook-trigger/4fced324-e420-4190-9ddb-265abc681cac';
+    // Dedicated GHL inbound webhook: "03. SMS Opt-Ins From Website".
+    // Receives the SMS opt-in payload (with audit fields: sms_consent_text,
+    // sms_consent_timestamp, source, user_agent). Downstream GHL workflow
+    // tags contact `sms-opted-in`, sets the consent custom fields, and
+    // (post-A2P-approval) fires the welcome SMS.
+    const SMS_OPTIN_WEBHOOK = 'https://services.leadconnectorhq.com/hooks/oxe72L0Uva4DN1UM1qJx/webhook-trigger/bfe3334b-154e-4b8f-abd1-0cc5e1dd6ed3';
     // EXACT consent text shown to the user on the form. Logged with each
     // submission for A2P 10DLC audit purposes - Twilio TCR can require
     // proof of what consent language was displayed at the moment of opt-in.
