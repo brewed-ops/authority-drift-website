@@ -322,7 +322,7 @@ html.js .reveal-right.in { opacity: 1; transform: none; }
   top: 0;
   bottom: 0;
   right: 0;
-  width: min(50%, 320px);
+  width: min(75%, 460px);
   z-index: 60;
   display: none;
   flex-direction: column;
@@ -5328,7 +5328,9 @@ html.js .reveal-right.in { opacity: 1; transform: none; }
   .section-head { margin-bottom: 48px; }
   .section-head h2 { font-size: clamp(1.7rem, 8vw, 2rem); }
   .nav-row { padding-left: 6px; padding-right: 6px; }
-  .brand-text { display: none; }  /* compass-only brand on tiny screens */
+  /* brand-text remains visible on small phones per Mike, 2026-05-28 */
+  .brand-line-1 { font-size: 11px; }
+  .brand-line-2 { font-size: 8px; }
   .hero-actions .btn { font-size: 0.92rem; letter-spacing: 0.18em; }
   .quote-card { width: 90vw; min-width: 90vw; padding: 32px 24px; }
   .testimonial { padding: 28px 20px 22px; }
