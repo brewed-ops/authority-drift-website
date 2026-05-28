@@ -1736,6 +1736,7 @@ html.js .reveal-right.in { opacity: 1; transform: none; }
   display: flex;
   gap: 14px;
   flex-wrap: wrap;
+  justify-content: center;
 }
 
 @media (max-width: 980px) {
@@ -5251,7 +5252,7 @@ html.js .reveal-right.in { opacity: 1; transform: none; }
   .hero-sub { font-size: clamp(0.98rem, 4vw, 1.15rem); }
   .hero-line { gap: 10px; flex-wrap: wrap; justify-content: center; font-size: 10px; letter-spacing: 0.18em; }
   .hero-actions { flex-direction: column; gap: 12px; }
-  .hero-actions .btn { width: 100%; min-height: 48px; }
+  .hero-actions .btn { min-height: 48px; }
 
   /* hero pull-quote (mobile final) */
   .section-hero-quote { padding: 56px 0; }
@@ -5301,7 +5302,7 @@ html.js .reveal-right.in { opacity: 1; transform: none; }
 
   /* invitation block tighter */
   .invitation-headline { font-size: clamp(1.8rem, 7vw, 2.4rem); line-height: 1.16; }
-  .invitation-actions .btn { width: 100%; min-height: 48px; }
+  .invitation-actions .btn { min-height: 48px; }
 
   /* referral page mobile */
   .referral-simple { padding: 100px 0 64px; }
@@ -5452,7 +5453,7 @@ html.js .reveal-right.in { opacity: 1; transform: none; }
   /* speaking topics: better stack on mobile */
   .topic-row { padding: 22px 0; gap: 12px; }
   .topic-row .topic-tag { font-size: 9px; padding: 7px 12px; min-width: 0; }
-  .speaking-cta .btn { width: 100%; min-height: 48px; }
+  .speaking-cta .btn { min-height: 48px; }
 
   /* FAQ touch targets */
   .faq-item { padding: 0 4px; }
@@ -5468,7 +5469,7 @@ html.js .reveal-right.in { opacity: 1; transform: none; }
 
   /* referrals card on home */
   .referrals-actions { flex-direction: column; gap: 12px; }
-  .referrals-actions .btn { width: 100%; min-height: 48px; }
+  .referrals-actions .btn { min-height: 48px; }
 
   /* final CTA mobile */
   .final-cta { padding: 80px 0; }
