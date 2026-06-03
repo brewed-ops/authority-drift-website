@@ -476,47 +476,78 @@
 
 })();
 
-/* ---------- watch clips: lazy click-to-play + carousel arrows ---------- */
+/* ---------- watch clips: 3D deck rotator + lazy click-to-play ---------- */
 document.addEventListener('DOMContentLoaded', function () {
-  var cards = document.querySelectorAll('.clip-card');
+  var deck = document.getElementById('clipsDeck');
+  if (!deck) return;
+  var stage = deck.querySelector('.clips-stage');
+  var cards = Array.prototype.slice.call(stage.querySelectorAll('.clip-card'));
+  if (!cards.length) return;
+  var n = cards.length;
+  var front = 0;
   var playing = null;
-  cards.forEach(function (card) {
+  var slots = ['slot-front', 'slot-right', 'slot-back', 'slot-left'];
+
+  function resetPlaying() {
+    if (!playing) return;
+    playing.pause(); playing.hidden = true;
+    var pc = playing.closest('.clip-card');
+    if (pc) { var ov = pc.querySelector('.clip-overlay'); if (ov) ov.style.display = ''; }
+    playing = null;
+  }
+  function render() {
+    cards.forEach(function (card, i) {
+      var rel = (i - front + n) % n;
+      card.classList.remove('slot-front', 'slot-right', 'slot-back', 'slot-left');
+      card.classList.add(slots[rel] || 'slot-back');
+      card.setAttribute('aria-hidden', rel === 0 ? 'false' : 'true');
+    });
+  }
+  function rotate(dir) { resetPlaying(); front = (front + dir + n) % n; render(); }
+  function playFront() {
+    var card = cards[front];
     var video = card.querySelector('.clip-video');
     var overlay = card.querySelector('.clip-overlay');
     if (!video) return;
-    function play() {
-      if (playing && playing !== video) {
-        playing.pause(); playing.hidden = true;
-        var pc = playing.closest('.clip-card');
-        if (pc) { var ov = pc.querySelector('.clip-overlay'); if (ov) ov.style.display = ''; }
-      }
-      video.hidden = false;
-      if (overlay) overlay.style.display = 'none';
-      var p = video.play(); if (p && p.catch) p.catch(function(){});
-      playing = video;
-    }
+    video.hidden = false;
+    if (overlay) overlay.style.display = 'none';
+    var p = video.play(); if (p && p.catch) p.catch(function(){});
+    playing = video;
+    video.addEventListener('ended', function () {
+      video.hidden = true; if (overlay) overlay.style.display = '';
+      if (playing === video) playing = null;
+    }, { once: true });
+  }
+
+  cards.forEach(function (card, i) {
     card.addEventListener('click', function (e) {
-      if (!video.hidden) return;          // let native controls handle once visible
-      e.preventDefault(); play();
+      if (i === front) {
+        var v = card.querySelector('.clip-video');
+        if (v && !v.hidden) return;        // native controls once playing
+        e.preventDefault(); playFront();
+      } else {
+        e.preventDefault(); resetPlaying(); front = i; render();
+      }
     });
     card.addEventListener('keydown', function (e) {
-      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); play(); }
-    });
-    video.addEventListener('ended', function () {
-      video.hidden = true;
-      if (overlay) overlay.style.display = '';
-      if (playing === video) playing = null;
+      if (e.key !== 'Enter' && e.key !== ' ') return;
+      e.preventDefault();
+      if (i === front) playFront(); else { resetPlaying(); front = i; render(); }
     });
   });
-  var track = document.getElementById('clipsTrack');
-  if (track) {
-    var stepBy = function () {
-      var c = track.querySelector('.clip-card');
-      return (c ? c.getBoundingClientRect().width + 20 : 280) * 1.2;
-    };
-    var prev = document.querySelector('.clips-prev');
-    var next = document.querySelector('.clips-next');
-    if (prev) prev.addEventListener('click', function () { track.scrollBy({ left: -stepBy(), behavior: 'smooth' }); });
-    if (next) next.addEventListener('click', function () { track.scrollBy({ left: stepBy(), behavior: 'smooth' }); });
-  }
+
+  var prev = deck.querySelector('.clips-prev');
+  var next = deck.querySelector('.clips-next');
+  if (prev) prev.addEventListener('click', function () { rotate(-1); });
+  if (next) next.addEventListener('click', function () { rotate(1); });
+
+  var x0 = null;
+  stage.addEventListener('touchstart', function (e) { x0 = e.touches[0].clientX; }, { passive: true });
+  stage.addEventListener('touchend', function (e) {
+    if (x0 === null) return;
+    var dx = e.changedTouches[0].clientX - x0; x0 = null;
+    if (Math.abs(dx) > 40) rotate(dx < 0 ? 1 : -1);
+  }, { passive: true });
+
+  render();
 });
