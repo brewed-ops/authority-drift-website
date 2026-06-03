@@ -551,3 +551,18 @@ document.addEventListener('DOMContentLoaded', function () {
 
   render();
 });
+
+/* ---------- defer decorative marquee videos until the events section is near (page-load perf) ---------- */
+document.addEventListener('DOMContentLoaded', function () {
+  var vids = document.querySelectorAll('video[data-lazy-video]');
+  if (!vids.length) return;
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (reduce) return; // honor reduced-motion: leave the poster static, never load the video
+  var playAll = function () { vids.forEach(function (v) { var p = v.play(); if (p && p.catch) p.catch(function(){}); }); };
+  var anchor = document.getElementById('mastermind') || vids[0];
+  if (!('IntersectionObserver' in window)) { playAll(); return; }
+  var io = new IntersectionObserver(function (entries) {
+    if (entries.some(function (e) { return e.isIntersecting; })) { playAll(); io.disconnect(); }
+  }, { rootMargin: '300px' });
+  io.observe(anchor);
+});
