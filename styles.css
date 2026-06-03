@@ -6167,3 +6167,24 @@ html.js .reveal-right.in { opacity: 1; transform: none; }
   .clip-card.slot-back  { transform: translate(-50%, -50%) translateZ(-300px) scale(0.62); }
   .clips-arrow { width: 44px; height: 44px; font-size: 1.4rem; }
 }
+
+/* ---- Watch deck: tablet / iPad ---- */
+@media (min-width: 721px) and (max-width: 1024px) {
+  .clips-stage { height: clamp(440px, 58vw, 560px); }
+  .clip-card { width: clamp(244px, 34vw, 304px); }
+  .clip-card.slot-right { transform: translate(-50%, -50%) translateX(28vw) translateZ(-185px) scale(0.8) rotateY(-25deg); }
+  .clip-card.slot-left  { transform: translate(-50%, -50%) translateX(-28vw) translateZ(-185px) scale(0.8) rotateY(25deg); }
+  .clip-card.slot-back  { transform: translate(-50%, -50%) translateZ(-345px) scale(0.64); }
+  .clips-deck { gap: 6px; }
+  .clips-arrow { width: 48px; height: 48px; }
+}
+/* ---- Watch deck: small phones ---- */
+@media (max-width: 400px) {
+  .clips-stage { height: clamp(380px, 132vw, 470px); }
+  .clip-card { width: clamp(196px, 64vw, 240px); }
+  .clip-card.slot-right { transform: translate(-50%, -50%) translateX(33vw) translateZ(-130px) scale(0.74) rotateY(-22deg); opacity: 0.42; }
+  .clip-card.slot-left  { transform: translate(-50%, -50%) translateX(-33vw) translateZ(-130px) scale(0.74) rotateY(22deg); opacity: 0.42; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .clip-card { transition: opacity 0.25s ease; }
+}
