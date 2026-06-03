@@ -475,3 +475,48 @@
   }
 
 })();
+
+/* ---------- watch clips: lazy click-to-play + carousel arrows ---------- */
+document.addEventListener('DOMContentLoaded', function () {
+  var cards = document.querySelectorAll('.clip-card');
+  var playing = null;
+  cards.forEach(function (card) {
+    var video = card.querySelector('.clip-video');
+    var overlay = card.querySelector('.clip-overlay');
+    if (!video) return;
+    function play() {
+      if (playing && playing !== video) {
+        playing.pause(); playing.hidden = true;
+        var pc = playing.closest('.clip-card');
+        if (pc) { var ov = pc.querySelector('.clip-overlay'); if (ov) ov.style.display = ''; }
+      }
+      video.hidden = false;
+      if (overlay) overlay.style.display = 'none';
+      var p = video.play(); if (p && p.catch) p.catch(function(){});
+      playing = video;
+    }
+    card.addEventListener('click', function (e) {
+      if (!video.hidden) return;          // let native controls handle once visible
+      e.preventDefault(); play();
+    });
+    card.addEventListener('keydown', function (e) {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); play(); }
+    });
+    video.addEventListener('ended', function () {
+      video.hidden = true;
+      if (overlay) overlay.style.display = '';
+      if (playing === video) playing = null;
+    });
+  });
+  var track = document.getElementById('clipsTrack');
+  if (track) {
+    var stepBy = function () {
+      var c = track.querySelector('.clip-card');
+      return (c ? c.getBoundingClientRect().width + 20 : 280) * 1.2;
+    };
+    var prev = document.querySelector('.clips-prev');
+    var next = document.querySelector('.clips-next');
+    if (prev) prev.addEventListener('click', function () { track.scrollBy({ left: -stepBy(), behavior: 'smooth' }); });
+    if (next) next.addEventListener('click', function () { track.scrollBy({ left: stepBy(), behavior: 'smooth' }); });
+  }
+});
