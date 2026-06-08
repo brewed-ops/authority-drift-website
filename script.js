@@ -423,57 +423,6 @@
     });
   }
 
-  /* ---------- text-updates (SMS opt-in) form: A2P 10DLC compliant ---------- */
-  const smsForm = document.getElementById('textUpdatesForm');
-  if (smsForm) {
-    // Dedicated GHL inbound webhook: "03. SMS Opt-Ins From Website".
-    // Receives the SMS opt-in payload (with audit fields: sms_consent_text,
-    // sms_consent_timestamp, source, user_agent). Downstream GHL workflow
-    // tags contact `sms-opted-in`, sets the consent custom fields, and
-    // (post-A2P-approval) fires the welcome SMS.
-    const SMS_OPTIN_WEBHOOK = 'https://services.leadconnectorhq.com/hooks/oxe72L0Uva4DN1UM1qJx/webhook-trigger/bfe3334b-154e-4b8f-abd1-0cc5e1dd6ed3';
-    // EXACT consent text shown to the user on the form. Logged with each
-    // submission for A2P 10DLC audit purposes - Twilio TCR can require
-    // proof of what consent language was displayed at the moment of opt-in.
-    // If the consent text on text-updates.html changes, update this string.
-    const CONSENT_TEXT = 'I agree to receive recurring text messages from The Authority Drift at the mobile number provided. Message frequency varies. Msg & data rates may apply. Reply STOP to unsubscribe, HELP for help. See our Privacy Policy for details.';
-    smsForm.addEventListener('submit', (e) => {
-      e.preventDefault();
-      const consentBox = document.getElementById('sms-consent');
-      // A2P: hard-fail if consent checkbox not checked. Required attribute
-      // already blocks form, but double-check defensively here too.
-      if (!consentBox || !consentBox.checked) {
-        const status = document.getElementById('textUpdatesStatus');
-        if (status) { status.textContent = 'Please check the consent box to opt in.'; status.style.color = '#C9A84C'; }
-        return;
-      }
-      const firstName = (document.getElementById('sms-first')?.value || '').trim();
-      const lastName = (document.getElementById('sms-last')?.value || '').trim();
-      const phoneRaw = (document.getElementById('sms-phone')?.value || '').trim();
-      const payload = {
-        full_name: (firstName + ' ' + lastName).trim(),
-        first_name: firstName,
-        last_name: lastName,
-        phone: phoneRaw,
-        sms_consent: true,
-        sms_consent_text: CONSENT_TEXT,
-        sms_consent_timestamp: new Date().toISOString(),
-        source: 'Website - Text Updates Opt-In',
-        page_url: window.location.href,
-        user_agent: navigator.userAgent
-      };
-      // GHL inbound webhook needs application/json. CORS preflight handled. Fire-and-forget.
-      fetch(SMS_OPTIN_WEBHOOK, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(payload)
-      }).catch(() => {});
-      // fire Meta Pixel Lead event (separate event_name for analytics)
-      if (typeof fbq === 'function') fbq('track', 'Lead', { content_name: 'SMS Opt-In' });
-      showFormThankYou(smsForm, 'You\'re in. Welcome aboard. You\'ll get a confirmation text shortly - reply STOP at any time to unsubscribe.');
-    });
-  }
-
 })();
 
 /* ---------- watch clips: 3D deck rotator + lazy click-to-play ---------- */
