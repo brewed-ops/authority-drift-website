@@ -122,6 +122,10 @@
 
   function init() {
     injectFooterLink();
+    // Honor Global Privacy Control: a GPC signal is a legally recognized
+    // opt-out (CPRA + several US state laws). If present, load no advertising
+    // cookies and skip the banner entirely.
+    if (navigator.globalPrivacyControl === true) { return; }
     var c = getConsent();
     if (c === 'granted') { loadMetaPixel(); }
     else if (c === 'denied') { /* respect rejection: load nothing */ }
